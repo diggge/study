@@ -1,0 +1,6 @@
+print('жопа карася',2**10)
+user_input=input('Введите дураки координаты цели: ')
+print(type(user_input))
+x, y = map(int,input(),split())
+print(type(x))
+print(x, y)
