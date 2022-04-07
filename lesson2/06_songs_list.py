@@ -21,7 +21,9 @@ violator_songs_list = [
 # Лучше заранее вычислить необходимое, а затем в print(xxx, yyy, zzz)
 
 # TODO здесь ваш код
+pesni3=violator_songs_list[3][1]+violator_songs_list[5][1]+violator_songs_list[8][1]
 
+print('Три песни звучат',round(pesni3,2),'минут')
 # Есть словарь песен группы Depeche Mode
 violator_songs_dict = {
     'World in My Eyes': 4.76,
