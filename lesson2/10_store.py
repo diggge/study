@@ -31,6 +31,25 @@ store = {
     ],
 }
 
+for gooditem in goods.items():
+    costitem = 0
+    quantityitem = 0
+    itemname = gooditem[0]
+    l =-1;
+    for storeitem in store.items():
+        l = l+1
+        if storeitem[0]==gooditem[1]:
+            s = storeitem[1].copy()
+            # print(s);
+            for asd in s:
+                print(asd.values()[1])
+            # print(storeitem[1])
+            # s = {}.copy(storeitem[1])
+            #     print(storeitem2)
+            #     print(storeitem[0])
+
+    print(itemname, quantityitem, 'шт, стоимость', costitem, 'руб')
+
 # Рассчитать на какую сумму лежит каждого товара на складе
 # например для ламп
 
