@@ -6,7 +6,7 @@ x, y = 10, 29
 
 if x < 0:
     print('Х меньше нуля')
-    z = x**2 + y
+      z = x**2 + y
 else:
     print('Х больше нуля')
     z = x - y
@@ -22,28 +22,27 @@ name = input('Enter your name >>>')
 if name == 'Ola':
     opponent = 'Ola'
     print('Hi, Ola!')
-else:
-    if name == 'Sofi':
+elif name == 'Sofi':
         opponent = 'Sofi'
         print('Hi, Sofi!')
-    else:
-        if name == 'Katy':
-            opponent = 'Katy'
-            print('Hi, Katy!')
-        else:
-            opponent = 'anonymous'
-            print('Hi, anonymous!')
+elif name == 'Katy'
+    opponent = 'Katy'
+        print('Hi, Katy!')
+else:
+    opponent = 'anonymous'
+    print('Hi, anonymous!')
 
 # оператор pass
 
 if x < 0:
     if y > 0:
-        z = -x + y
+        pass
+        #z = -x + y
     else:
         z = -x - y
 else:
     z = x + y
-
+class
 # соглашения о стиле кода
 # PEP8 (Python Enhancement Proposal 8) - описан "правильный" стиль программирования в пайтон
 # https://www.python.org/dev/peps/pep-0008/
@@ -60,8 +59,7 @@ else:
 
 # Максимальная длина строки
 
-my_poem = ['Варкалось, хливкие шорьки пырялись по наве', 'И хрюкотали зелюки как мюмзики в мове',
-           'О бойся Бармаглота, сын! Он так свирлеп и дик', 'А в глуше рымит исполин - Злопастный Брандашмыг!', ]
+my_poem = ['Варкалось, хливкие шорьки пырялись по наве', 'И хрюкотали зелюки как мюмзики в мове',           'О бойся Бармаглота, сын! Он так свирлеп и дик', 'А в глуше рымит исполин - Злопастный Брандашмыг!', ]
 
 # пробелы в операторах
 
@@ -69,9 +67,9 @@ x =2
 y= x* x+ 1
 is_big=x   >=3000
 
-x = my_poem   [-1]
+x = my_poem                [-1]
 print    (x)
-my_list= [2,3 ,4,   5,6,]
+my_list= [2,3 ,4,   5,  6,]
 
 # reformat кода
 
@@ -96,8 +94,8 @@ count_of_my_pets = 34
 if count_of_my_pets > 10:
     print('I need more space for my pets!')
 
-my_favorite_pets_and_bird = ['cat', 'wolf', 'ostrich']
-if 'lion' in my_favorite_pets_and_bird:
+my_favorite = ['cat', 'wolf', 'ostrich']
+if 'lion' in my_favorite:
     print('Wow!')
 
 MyFavoritePetsAndBirds = ['cat', 'wolf', 'ostrich']
