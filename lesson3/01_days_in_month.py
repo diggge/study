@@ -17,7 +17,36 @@
 user_input = input("Введите, пожалуйста, номер месяца: ")
 month = int(user_input)
 print('Вы ввели', month)
+month_31 = [1, 3, 5, 7, 8, 10, 12]
+month_30 = [4, 6, 9, 11]
 
 # TODO здесь ваш код
-if month==1 or 2 or 2 or 4:
-    print('в месяце который вы вели, 31 дней')
+# if (month== 1 or month==3 or month==5 or month==7 or month==8 or month==10 or month==12):
+i = -1
+j = -1
+while i < len(month_31):
+    i += 1
+    if month == month_31[i]:
+        print('в месяце который вы вели, 31 дней')
+        break
+while j < len(month_30):
+    j += 1
+    if month == month_30[j]:
+        print('в месяце который вы вели, 30 дней')
+        break
+if month == 28:
+    print('в месяце который вы вели, 28 дней')
+else:
+    print('Вы вели некорретный месяц')
+
+
+
+
+# # if month == month_31
+# #     print('в месяце который вы вели, 31 дней')
+# elif (month== 4 or 6 or 9 or 11):
+#     print('в месяце который вы вели, 30 дней')
+# elif month== 2:
+#     print('в месяце который вы вели, 28 дней')
+# else:
+#     print('Вы вели некорретный месяц')
