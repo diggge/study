@@ -26,9 +26,9 @@ sd.resolution = (1200, 600)
 # TODO здесь ваш код
 def bubble(point,step,color):
     radius = 50
-    for _ in range(3):
+    for _ in range(10):
         radius += step
-        sd.circle(center_position=point, radius=radius, color=color, width=10)
+        sd.circle(center_position=point, radius=radius, color=color, width=3)
 #
 #
 # for y in range(100, 301, 100):
