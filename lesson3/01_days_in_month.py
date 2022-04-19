@@ -15,8 +15,13 @@
 #     <блок кода 4>
 # Номер месяца получать от пользователя следующим образом
 user_input = input("Введите, пожалуйста, номер месяца: ")
-month = int(user_input)
-print('Вы ввели', month)
+user_input = input("Введите, пожалуйста, номер месяца: ")
+try:
+    month = int(user_input)
+    print('Вы ввели', month)
+except ValueError:
+    print('Ошибка, Вы вели не целое число')
+
 month_31 = [1, 3, 5, 7, 8, 10, 12]
 month_30 = [4, 6, 9, 11]
 
@@ -25,7 +30,7 @@ month_30 = [4, 6, 9, 11]
 i = -1
 finded = 0
 j = -1
-while i < len(month_31)-1:
+while i < len(month_31) - 1:
     i += 1
     if month == month_31[i]:
         print('в месяце который вы вели, 31 дней')
