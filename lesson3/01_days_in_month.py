@@ -23,21 +23,26 @@ month_30 = [4, 6, 9, 11]
 # TODO здесь ваш код
 # if (month== 1 or month==3 or month==5 or month==7 or month==8 or month==10 or month==12):
 i = -1
+finded = 0
 j = -1
-while i < len(month_31):
+while i < len(month_31)-1:
     i += 1
     if month == month_31[i]:
         print('в месяце который вы вели, 31 дней')
+        finded = 1
         break
-while j < len(month_30):
-    j += 1
-    if month == month_30[j]:
-        print('в месяце который вы вели, 30 дней')
-        break
-if month == 28:
-    print('в месяце который вы вели, 28 дней')
-else:
-    print('Вы вели некорретный месяц')
+if finded == 0:
+    while j < len(month_30) - 1:
+        j += 1
+        if month == month_30[j]:
+            print('в месяце который вы вели, 30 дней')
+            finded = 1
+            break
+if finded == 0:
+    if month == 2:
+        print('в месяце который вы вели, 28 дней')
+    else:
+        print('Вы вели некорретный месяц')
 
 
 
