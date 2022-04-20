@@ -156,7 +156,6 @@ for animal, mass in zoo_pet_mass.items():
     print(animal, mass)
     total_mass += mass
 print('Общая масса животных', total_mass)
-
 total_mass = 0
 for mass in zoo_pet_mass.values():
     print(mass)

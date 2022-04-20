@@ -35,36 +35,45 @@
 #
 # Определить, пройдет ли кирпич через отверстие (грани кирпича параллельны сторонам отверстия)
 
-hole_x, hole_y = 8, 9
-brick_x, brick_y, brick_z = 100, 9, 1000
-flag=0
 
-if hole_x >= brick_x:
-    if (hole_y >= brick_y or hole_y >= brick_z):
-        print('Да')
-        flag=1
-elif flag==0 and hole_x >= brick_y:
-    if (hole_y >= brick_x or hole_y >= brick_z):
-        print('Да')
-        flag = 1
-elif flag==0 and hole_x >= brick_z:
-    if (hole_y >= brick_x or hole_y >= brick_y):
-        print('Да')
-        flag = 1
-if  (flag==0 and hole_y >= brick_x):
-    if (hole_x >= brick_y or hole_x >= brick_z):
-        print('Да')
-        flag = 1
-elif flag==0 and hole_y >= brick_y:
-    if (hole_x >= brick_x or hole_x >= brick_z):
-        print('Да')
-        flag = 1
-elif flag==0 and hole_y >= brick_z:
-    if (hole_x >= brick_x or hole_x >= brick_y):
-        print('Да')
-        flag = 1
-if flag==0:
+# flag=0
+#
+# if hole_x >= brick_x:
+#     if (hole_y >= brick_y or hole_y >= brick_z):
+#         print('Да')
+#         flag=1
+# elif flag==0 and hole_x >= brick_y:
+#     if (hole_y >= brick_x or hole_y >= brick_z):
+#         print('Да')
+#         flag = 1
+# elif flag==0 and hole_x >= brick_z:
+#     if (hole_y >= brick_x or hole_y >= brick_y):
+#         print('Да')
+#         flag = 1
+# if  (flag==0 and hole_y >= brick_x):
+#     if (hole_x >= brick_y or hole_x >= brick_z):
+#         print('Да')
+#         flag = 1
+# elif flag==0 and hole_y >= brick_y:
+#     if (hole_x >= brick_x or hole_x >= brick_z):
+#         print('Да')
+#         flag = 1
+# elif flag==0 and hole_y >= brick_z:
+#     if (hole_x >= brick_x or hole_x >= brick_y):
+#         print('Да')
+#         flag = 1
+# if flag==0:
+#     print('Нет')
+hole_x, hole_y = 8, 9
+brick_x, brick_y, brick_z = 100, 9, 10
+spisok_hole = sorted([hole_x, hole_y])
+spisok_brick = sorted([brick_x, brick_y, brick_z])
+
+if (spisok_hole[0] >= spisok_brick[0] and spisok_hole[1] >= spisok_brick[1]):
+    print('Да')
+else:
     print('Нет')
+
 
 # brick_x, brick_y, brick_z = 11, 2, 10
 # brick_x, brick_y, brick_z = 10, 11, 2
