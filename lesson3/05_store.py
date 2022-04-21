@@ -34,7 +34,7 @@ for i in goods:
             for k in store[j]:
                 wtuk=wtuk+k['quantity']
                 sena=sena+k['quantity']*k['price']
-            print('На складе лежит товара:',i , 'в количестве',wtuk, 'штук с Общей суммой',sena, 'рублей')
+            print('На складе лежит товара:',i , 'в количестве',wtuk, 'штук с общей суммой',sena, 'рублей')
             # print(d[0]['quantity'])
             # for k in j:
             #     print(store[j])
