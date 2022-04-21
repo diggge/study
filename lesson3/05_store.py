@@ -25,6 +25,23 @@ store = {
         {'quantity': 43, 'price': 97},
     ],
 }
+for i in goods:
+#     # print(goods[i])
+    for j in store:
+        if goods[i]==j:
+            wtuk=0
+            sena=0
+            for k in store[j]:
+                wtuk=wtuk+k['quantity']
+                sena=sena+k['quantity']*k['price']
+            print('На складе лежит товара:',i , 'в количестве',wtuk, 'штук с Общей суммой',sena, 'рублей')
+            # print(d[0]['quantity'])
+            # for k in j:
+            #     print(store[j])
+            # print(store[j][0]['quantity'])
+
+
+
 
 
 
