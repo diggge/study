@@ -26,14 +26,21 @@ store = {
     ],
 }
 
-# i=0
-for i in store:
-    print(i,store[i])
 
 
+ # zoo_pet_mass = {
+ #                'lion': 300,
+ #                'skunk': 5,
+ #                'elephant': 5000,
+ #                'horse': 400,
+ #            }
+ #            total_mass = 0
+ #            for animal in zoo_pet_mass:
+ #                print(animal, zoo_pet_mass[animal])
+ #                total_mass += zoo_pet_mass[animal]
+            # print(d)
+    # print(goods[i])
 
-# print(goods.items('12345'))
-# print(store['12345'])
 # Рассчитать на какую сумму лежит каждого товара на складе.
 # Вывести суммарную стоимость каждого товара на складе c помощью циклов
 # То есть: всего по лампам, стульям, етс.
@@ -50,6 +57,14 @@ for i in store:
 # TODO здесь ваш код
 
 
+# i=0
+# for i in store:
+#     print(i,store[i])
+
+
+
+# print(goods.items('12345'))
+# print(store['12345'])
 
 
 
