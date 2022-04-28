@@ -2,7 +2,7 @@
 
 # (цикл for)
 import simple_draw as sd
-sd.resolution = (379.7, 281.5)
+sd.resolution = (70, 210)
 # Нарисовать стену из кирпичей. Размер кирпича - 100х50
 # Использовать вложенные циклы for
 # TODO здесь ваш код
@@ -19,7 +19,7 @@ for j in range(int(yk)+1):
         x1=x1+19.5
         kolichestvo=kolichestvo+1
 
-    for i in range(int(yn)+1):
+    for i in range(int(yn)+2):
         kolichestvo = kolichestvo + 1
         sd.rectangle(sd.get_point(x1, y1), sd.get_point(x1 + 39, y1 + 18.8), color=sd.COLOR_ORANGE, width=1)
         x1 = x1 + 39
