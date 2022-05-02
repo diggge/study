@@ -1,31 +1,30 @@
-# решение проблемы
-def add_element_to_list(element, list_to_add=None):
-    """добавляем элемент к списку"""
-    if list_to_add is None:
-        list_to_add = []
-    list_to_add.append(element)
-    return list_to_add
+# рекурсия часто используется для обхода деревьев
+html_dom = {
+    'html': {
+        'head': {
+            'title': 'Колобок',
+        },
+        'body': {
+            'h2': 'Привет!',
+            'div': 'Хочешь, я расскажу тебе сказку?',
+            'p': 'Жили-были старик со старухой...',
+        }
+    }
+}
 
-my_list = [3, 4, 5]
-add_element_to_list(element=1, list_to_add=my_list)
-print(my_list)
-new_list = add_element_to_list(element=1)
-print(new_list)
-# add_element_to_list(element=7, list_to_add=new_list)
-# print(new_list)
 
-# other_new_list = add_element_to_list(element=2)
-# print(other_new_list)
-# print(new_list)
-# решение проблемы
-# def add_element_to_list(element, list_to_add=None):
-#     """добавляем элемент к списку"""
-#     if list_to_add is None:
-#         list_to_add = []
-#     list_to_add.append(element)
-#     return list_to_add
-#
-#
-# my_list = [3, 4, 5]
-# add_element_to_list(element=1, list_to_add=my_list)
-# print(my_list)
+def find_element(tree, element_name):
+    if element_name in tree:
+        return tree[element_name]
+    for key, sub_tree in tree.items():
+        if isinstance(sub_tree, dict):
+            result = find_element(tree=sub_tree, element_name=element_name)
+            if result:
+                break
+    else:
+        result = None
+    return result
+
+
+res = find_element(tree=html_dom, element_name='html')
+print(res)
