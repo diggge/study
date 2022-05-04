@@ -1,17 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# import pymysql
-#
-# con = pymysql.connect(host="10.77.3.24", user="ivanov-aa", password="Ctynz,hm2", db="baza_se")
-# with con:
-#     cur = con.cursor()
-#     cur.execute("SELECT * FROM `TABLE 1`")
-#
-#     rows = cur.fetchall()
-#
-#     for row in rows:
-#         print("{0} {1} {2}".format(row[0], row[1], row[2]))
-import pymysql
 import pymysql.cursors
 con = pymysql.connect(host='10.77.3.24',
                       user='ivanov-aa',
@@ -19,7 +7,6 @@ con = pymysql.connect(host='10.77.3.24',
                       db='baza_se',
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor)
-
 with con:
     cur = con.cursor()
     cur.execute("SELECT * FROM `TABLE 1`")
