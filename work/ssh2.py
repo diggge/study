@@ -91,7 +91,7 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
 devices=devices_ID+devices_filials
 # print(device)
-commands = ["conf ter", "no ntp access-group peer 20",'ntp server 10.77.30.1 prefer']
+commands = ["conf ter", "no ip http server",'no ip http secure-server','end','wr']
 for oborudovanie in devices_filials_routers:
     try:
         result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
