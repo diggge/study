@@ -126,7 +126,6 @@ for i in range(len(zoo_pets)):
     animal = zoo_pets[i]
     print(i, animal)
 
-
 # вложенные циклы
 zoo_pets = [
     'lion', 'skunk',
