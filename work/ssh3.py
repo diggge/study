@@ -44,21 +44,12 @@ def send_show_command(
         return result
 
 
-commands = ["sh cdp neighbors fa0/1 | i SEP"]
-
-host = '10.77.30.4'
-user = 'root'
-secret = "Cf[f'ythuj2104"
-port = 22
-
-client = paramiko.SSHClient()
-client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-# Подключение
-client.connect(hostname=host, username=user, password=secret, port=port)
-
-# Выполнение команды
-stdin, stdout, stderr = client.exec_command('traceroute 90.0.0.9')
-
-# Читаем результат
-data = stdout.read() + stderr.read()
-client.close()
+commands = ["sh inventory"]
+# for oborudovanie in devices_filials_routers:
+#     try:
+#         result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+#         pprint(result, width=120)
+#     except:
+#         print('На данном оборудовании', oborudovanie, 'скрипт отработал неудачно')
+result = send_show_command(ip='10.77.30.6', username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+pprint(result, width=120)
