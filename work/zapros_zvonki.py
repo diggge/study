@@ -13,7 +13,7 @@ with con:
     rows = cur.fetchall()
     for row in rows:
         print(row)
-        # if row['ip_number']==1096:
-        #     print('Нашли, вот его имя=', row["name_phone"], ', и вот его телефон =', row["id_phone"])
-        # else:
-        #     continue
+        # if row['komu_zvonyat']==2356:
+        #      print('Нашли звонки=', row["acctstoptime"], row["vremyazvonka"], row["komu_zvonyat"], row["kto_zvonit"], row["acctstoptime"])
+        #  else:
+        #      continue
