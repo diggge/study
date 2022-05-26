@@ -15,7 +15,7 @@ with con:
         "SELECT callingstationid,calledstationid,acctstarttime,acctsessiontime,nasipaddress FROM `history_phone` WHERE (acctstarttime>'2022-05-01 00:00:00' AND acctstoptime<'2022-07-01 10:00:00') ORDER BY acctstoptime")
     rows = cur.fetchall()
     for row in rows:
-        if (row["callingstationid"] == '2356' or row["calledstationid"] == '2356'):
+        if (row["callingstationid"] == '1096' or row["calledstationid"] == '1096'):
              print('Кто звонил: ', row["callingstationid"], 'Кому звонил:', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:', row["acctsessiontime"])
         #     print('Указанный номер звонил на номера: ', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:' ,row["acctsessiontime"])
         # if row["nasipaddress"] == '10.200.0.8':

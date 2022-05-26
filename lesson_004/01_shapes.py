@@ -27,6 +27,29 @@ import simple_draw as sd
 # sd.line()
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
+# def triangle(point, angle, length, figure):
+    # storony[]=None
+figure=3
+def func(i):
+    v[i]=i
+    print(v[i])
+func(i=3)
+# for i in range(figure):
+#     print(i)
+    # storony(i) == sd.get_point(100+i,100-i)
+    # v[i]=sd.get_point(100+i,100-i)
+    # v(i)=i
+    # print(v(i))
+
+    # v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
+    # v1.draw()
+    # v2 = sd.get_vector(start_point=v1.end_point, angle=angle + 120, length=length, width=3)
+    # v2.draw()
+    # v3 = sd.get_vector(start_point=v2.end_point, angle=angle + 240, length=length, width=3)
+    # v3.draw()
+# for angle in range(0,361, 15):
+#     for length in range(0,301,50):
+# triangle(sd.get_point(300, 300),angle=0,length=200,figure=3)
 # TODO здесь ваш код
 
 # Часть 1-бис.
