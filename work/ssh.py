@@ -55,11 +55,11 @@ devices_ID = ["10.77.30.1", "10.77.30.2","10.77.30.3", "10.77.30.4","10.77.30.5"
               "10.77.30.23","10.77.30.24", "10.77.30.30","10.77.30.100", "10.77.30.101","10.77.30.102", "10.77.30.103",
               "10.77.30.104"]
 devices_filials_routers = [
-              '10.3.30.1',
+              # '10.3.30.1',
               '10.4.30.1',
 			  '10.5.30.1',
               '10.6.30.1',
-              '10.7.30.1',
+              # '10.7.30.1',
 			  '10.8.30.1',
 			  '10.9.30.1',
 			  '10.10.30.1',
@@ -91,7 +91,8 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
 device=devices_ID+devices_filials
 # print(device)
-commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
+# commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
+commands = ["sh run | i bind control source-interface"]
 for oborudovanie in devices_filials_routers:
     result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
     pprint(result, width=120)

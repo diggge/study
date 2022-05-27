@@ -29,11 +29,7 @@ import simple_draw as sd
 
 # def triangle(point, angle, length, figure):
     # storony[]=None
-figure=3
-def func(i):
-    v[i]=i
-    print(v[i])
-func(i=3)
+
 # for i in range(figure):
 #     print(i)
     # storony(i) == sd.get_point(100+i,100-i)
