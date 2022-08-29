@@ -52,7 +52,7 @@ def send_show_command(
 devices_ID = ["10.77.30.1", "10.77.30.2","10.77.30.3", "10.77.30.4","10.77.30.5", "10.77.30.6","10.77.30.7",
               "10.77.30.8","10.77.30.9", "10.77.30.10","10.77.30.11", "10.77.30.12","10.77.30.13", "10.77.30.14",
               "10.77.30.15", "10.77.30.19","10.77.30.20", "10.77.30.21","10.77.30.22",
-              "10.77.30.23","10.77.30.24", "10.77.30.30","10.77.30.100", "10.77.30.101","10.77.30.102", "10.77.30.103",
+              "10.77.30.23","10.77.30.24", "10.77.30.25", "10.77.30.30","10.77.30.100", "10.77.30.101","10.77.30.102", "10.77.30.103",
               "10.77.30.104"]
 devices_filials_routers = [
               # '10.3.30.1',
@@ -89,10 +89,11 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.16.30.1','10.16.30.2','10.16.30.3',
 			  '10.17.30.1','10.17.30.2',
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
-device=devices_ID+devices_filials
+device=devices_ID
 # print(device)
-# commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
-commands = ["sh run | i bind control source-interface"]
-for oborudovanie in devices_filials_routers:
+#commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
+commands = ["configure terminal", "access-list 23 permit 10.77.0.0 0.0.255.255", "end", "wr"]
+#commands = ["sh run | i bind control source-interface"]
+for oborudovanie in device:
     result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
     pprint(result, width=120)

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import pymysql.cursors
 
-
 con = pymysql.connect(host='10.77.3.24',
                       user='ivanov-aa',
                       password='Ctynz,hm2',
@@ -12,7 +11,7 @@ con = pymysql.connect(host='10.77.3.24',
 with con:
     cur = con.cursor()
     cur.execute(
-        "SELECT callingstationid,calledstationid,acctstarttime,acctsessiontime,nasipaddress FROM `history_phone` WHERE (acctstarttime>'2022-05-01 00:00:00' AND acctstoptime<'2022-10-01 10:00:00') ORDER BY acctstoptime")
+        "SELECT callingstationid,calledstationid,acctstarttime,acctsessiontime,nasipaddress FROM `history_phone` WHERE (acctstarttime>'2022-01-01 00:00:00' AND acctstoptime<'2022-10-01 10:00:00') ORDER BY acctstoptime")
     rows = cur.fetchall()
     for row in rows:
         if (row["callingstationid"] == '2369' or row["calledstationid"] == '2369'):
