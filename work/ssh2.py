@@ -54,8 +54,7 @@ devices_ID = ["10.77.30.1", "10.77.30.2", "10.77.30.3", "10.77.30.4","10.77.30.5
               "10.77.30.15", "10.77.30.19", "10.77.30.20", "10.77.30.21", "10.77.30.22",
               "10.77.30.23", "10.77.30.24", "10.77.30.24", "10.77.30.30", "10.77.30.100", "10.77.30.101", "10.77.30.102", "10.77.30.103",
               "10.77.30.104"]
-devices_filials_routers = [
-              '10.3.30.1',
+devices_filials_routers = ['10.3.30.1',
               '10.4.30.1',
 			  '10.5.30.1',
               '10.6.30.1',
@@ -89,13 +88,13 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.16.30.1','10.16.30.2','10.16.30.3',
 			  '10.17.30.1','10.17.30.2',
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
-devices=devices_ID+devices_filials
+devices=devices_filials_routers
 # print(device)
 #commands = ["conf ter", "no ip http server",'no ip http secure-server','end','wr']
 commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
-for oborudovanie in devices_filials_routers:
+for oborudovanie in devices:
     try:
         result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
         pprint(result, width=120)
-        except:
+    except:
         print('На данном оборудовании', oborudovanie, 'скрипт отработал неудачно')
