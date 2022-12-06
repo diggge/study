@@ -93,9 +93,9 @@ devices=devices_ID+devices_filials
 # print(device)
 #commands = ["conf ter", "no ip http server",'no ip http secure-server','end','wr']
 commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
-for oborudovanie in devices:
+for oborudovanie in devices_filials_routers:
     try:
-        result = send_show_command(ip=devices_filials_routers, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+        result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
         pprint(result, width=120)
-    except:
+        except:
         print('На данном оборудовании', oborudovanie, 'скрипт отработал неудачно')

@@ -15,7 +15,7 @@ with con:
     rows = cur.fetchall()
     for row in rows:
         if (row["callingstationid"] == '2369' or row["calledstationid"] == '2369'):
-                    print('Кто звонил: ', row["callingstationid"], 'Кому звонил:', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:', row["acctsessiontime"])
+            print('Кто звонил: ', row["callingstationid"], 'Кому звонил:', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:', row["acctsessiontime"])
         #     print('Указанный номер звонил на номера: ', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:' ,row["acctsessiontime"])
         # if row["nasipaddress"] == '10.200.0.8':
         #     print('Кто звонил: ', row["callingstationid"], 'Кому звонил',row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:', row["acctsessiontime"])

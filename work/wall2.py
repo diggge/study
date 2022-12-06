@@ -14,8 +14,10 @@ for j in range(int(yk)+1):
     x1=0
     # x1=sd.random_number(-20,0)
     if j%2==0:
+
         x1=x1
     else:
+
         x1=x1+19.5
         kolichestvo=kolichestvo+1
 
