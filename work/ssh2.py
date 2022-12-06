@@ -92,10 +92,10 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 devices=devices_ID+devices_filials
 # print(device)
 #commands = ["conf ter", "no ip http server",'no ip http secure-server','end','wr']
-commands = ["configure terminal", "access-list 23 permit 10.77.0.0 0.0.255.255", "end", "wr","exit"]
+commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
 for oborudovanie in devices:
     try:
-        result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+        result = send_show_command(ip=devices_filials_routers, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
         pprint(result, width=120)
     except:
         print('На данном оборудовании', oborudovanie, 'скрипт отработал неудачно')
