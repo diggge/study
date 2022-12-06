@@ -55,11 +55,11 @@ devices_ID = ["10.77.30.1", "10.77.30.2","10.77.30.3", "10.77.30.4","10.77.30.5"
               "10.77.30.23","10.77.30.24", "10.77.30.25", "10.77.30.30","10.77.30.100", "10.77.30.101","10.77.30.102", "10.77.30.103",
               "10.77.30.104"]
 devices_filials_routers = [
-              # '10.3.30.1',
+               '10.3.30.1',
               '10.4.30.1',
 			  '10.5.30.1',
               '10.6.30.1',
-              # '10.7.30.1',
+               '10.7.30.1',
 			  '10.8.30.1',
 			  '10.9.30.1',
 			  '10.10.30.1',
@@ -89,11 +89,12 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.16.30.1','10.16.30.2','10.16.30.3',
 			  '10.17.30.1','10.17.30.2',
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
-device=devices_ID
+devices_filials1 = ['10.18.30.3','10.18.30.4','10.18.30.5']
+device=devices_filials1
 # print(device)
 #commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
-commands = ["configure terminal", "access-list 23 permit 10.77.0.0 0.0.255.255", "end", "wr"]
+commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
 #commands = ["sh run | i bind control source-interface"]
 for oborudovanie in device:
-    result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+    result = send_show_command(ip=devices_filials_routers, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
     pprint(result, width=120)
