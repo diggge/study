@@ -13,7 +13,6 @@ radius = 42
 pi=3.1415926
 plowad_kruga=pi*radius**2
 print(round(plowad_kruga,4))
-
 # Далее, пусть есть координаты точки
 point = (23, 34)
 # где 23 - координата х, 34 - координата у
