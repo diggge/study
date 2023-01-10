@@ -1,29 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from pprint import pprint
 # есть список животных в зоопарке
 
-zoo = ['lion', 'kangaroo', 'elephant', 'monkey',]
+zoo = ['lion', 'kangaroo', 'elephant', 'monkey', ]
 
 # посадите медведя (bear) между львом и кенгуру
 #  и выведите список на консоль
 # TODO здесь ваш код
-
-
-
+zoo.insert(1,'bear')
+# pprint(zoo)
 # добавьте птиц из списка birds в последние клетки зоопарка
 birds = ['rooster', 'ostrich', 'lark', ]
 #  и выведите список на консоль
 # TODO здесь ваш код
-
+zoo.extend(birds)
+print(zoo)
 # уберите слона
 #  и выведите список на консоль
 # TODO здесь ваш код
-zov.remove('elephant')
-print(zov)
+del zoo[3]
+print(zoo)
 # выведите на консоль в какой клетке сидит лев (lion) и жаворонок (lark).
 # Номера при выводе должны быть понятны простому человеку, не программисту.
 # TODO здесь ваш код
-print('Лев сидит в клетке № ',1+zov.index('lion'),'с левой стороны')
-print('жаворонок сидит в клетке № ',1+zov.index('lark'),'с левой стороны')
+print('lion sidit v kletke = ',zoo.index('lion')+1)
+print('lark sidit v kletke = ',zoo.index('lark')+1)
 
