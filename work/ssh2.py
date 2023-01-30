@@ -90,8 +90,8 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
 devices=devices_filials_routers
 # print(device)
-#commands = ["conf ter", "no ip http server",'no ip http secure-server','end','wr']
-commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
+#commands = ["conf ter", "no vpdn-group 2",'no ip http secure-server','end','wr']
+commands = ["configure terminal", "no vpdn-group 2", "end", "wr"]
 for oborudovanie in devices:
     try:
         result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
