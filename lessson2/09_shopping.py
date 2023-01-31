@@ -55,6 +55,6 @@ sweets = {
 # print(shops)
 # print(sweets)
 # Указать надо только по 2 магазина с минимальными ценами
-print(sweets['карамель'][1]['price'])
-print(min(sweets, key=sweets['печенье'][1]['price']))
+print(sweets['пирожное'][2]['price'])
+# print(min(sweets, key=sweets['печенье'][1]['price']))
 
