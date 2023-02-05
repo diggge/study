@@ -26,15 +26,59 @@
 #     i += 1
 # print('дотвиданя!')
 
-f1, f2, count = 0, 1, 0
-while f2 < 10000:
-    count += 1
-    if count > 27:
-        print('Число итераций больше 27, выхожу')
-        break
-    f1, f2 = f2, f1 + f2
-    if f2 < 10:
-        continue
-    print(f2)
-else:
-    print('было', count, 'итераций')
+# zoo_pets = [
+#     'lion', 'monkey', 'skunk',
+#     'elephant', 'horse',
+# ]
+# for i, animal in enumerate(zoo_pets):
+#     print(i, animal)
+# генерация целочисленных последовательностей
+# for i in range(100, 600, 50):
+#     print(i)
+# вложенные циклы
+# zoo_pets = [
+#     'lion', 'skunk',
+#     'elephant', 'horse',
+# ]
+# for animal in zoo_pets:
+#     for char in animal:
+#         print(char)
+#     print(animal)
+# цикл по словарям
+
+# zoo_pet_mass = {
+#     'lion': 300,
+#     'skunk': 5,
+#     'elephant': 5000,
+#     'horse': 400,
+# }
+# print(zoo_pet_mass['lion'])
+# total_mass = 0
+# for animal in zoo_pet_mass:
+#     print(animal, zoo_pet_mass[animal])
+#     total_mass += zoo_pet_mass[animal]
+# print('Общая масса животных', total_mass)
+#
+# total_mass = 0
+# print(zoo_pet_mass.items())
+# print(zoo_pet_mass.values())
+# for animal, mass in zoo_pet_mass.items():
+#     print(zoo_pet_mass.items())
+#     print(animal, mass)
+#     total_mass += mass
+# print('Общая масса животных', total_mass)
+# total_mass = 0
+# for mass in zoo_pet_mass.values():
+#     print(mass)
+#     total_mass += mass
+# print('Общая масса животных', total_mass)
+
+def some_func():
+    print('Привет! Я функция')
+
+
+# some_func()
+#
+my_list = [3, 14, 15, 92, 6]
+for element in my_list:
+    some_func()
