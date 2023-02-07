@@ -10,5 +10,17 @@
 user_input = input("Введите, пожалуйста, номер месяца: ")
 month = int(user_input)
 print('Вы ввели', month)
-
 # TODO здесь ваш код
+month_28=[2]
+month_30=[4,6,9,11]
+month_31=[1,3,5,7,8,10,12]
+if (month>12 or month<1):
+    print('Вы вели некорректный месяц')
+elif month in month_30:
+    print('Количество дней введенном месяце 30')
+elif month in month_31:
+    print('Количество дней введенном месяце 31')
+elif month in month_28:
+    print('Количество дней введенном месяце 28')
+else:
+    print('не нашли введенный месяц')
