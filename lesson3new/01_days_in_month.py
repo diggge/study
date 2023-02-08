@@ -17,6 +17,8 @@ month_30=[4,6,9,11]
 month_31=[1,3,5,7,8,10,12]
 if (month>12 or month<1):
     print('Вы вели некорректный месяц')
+elif type(month)!=int:
+    print('Вы вели некорректный месяц')
 elif month in month_30:
     print('Количество дней введенном месяце',month_dict[month], '=30')
 elif month in month_31:
