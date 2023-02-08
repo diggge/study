@@ -13,9 +13,8 @@ educational_grant, expenses = 10000, 12000
 i=10
 parawut=0
 while i>=1:
-    parawut=parawut+expenses*(1.03**(i-1))-educational_grant
-    print(i, parawut)
+    parawut=parawut+(expenses*1.03**(i-1))-educational_grant
     i=i-1
 else:
-    print(round(parawut,2))
+    print('Студенту надо попросить',round(parawut,2),'рублей')
 
