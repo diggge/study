@@ -9,8 +9,8 @@
 # Результат проверки вывести на консоль (ДА/НЕТ)
 # Использовать только операторы if/elif/else, можно вложенные
 
-# envelop_x, envelop_y = 10, 7
-# paper_x, paper_y = 8, 9
+envelop_x, envelop_y = 10, 7
+paper_x, paper_y = 8, 9
 # проверить для
 # paper_x, paper_y = 9, 8
 # paper_x, paper_y = 6, 8
@@ -21,7 +21,7 @@
 # (просто раскоментировать нужную строку и проверить свой код)
 
 # TODO здесь ваш код
-
+if paper_x>envelop_x
 # if (envelop_x >= paper_x and envelop_y >= paper_y) or (envelop_x >= paper_y and envelop_y >= paper_x):
 #     print('Да')
 # else:

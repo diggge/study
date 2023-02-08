@@ -8,7 +8,14 @@
 # чтобы можно было прожить учебный год (10 месяцев), используя только эти деньги и стипендию.
 # Формат вывода:
 #   Студенту надо попросить ХХХ.ХХ рублей
-
 educational_grant, expenses = 10000, 12000
-
 # TODO здесь ваш код
+i=10
+parawut=0
+while i>=1:
+    parawut=parawut+expenses*(1.03**(i-1))-educational_grant
+    print(i, parawut)
+    i=i-1
+else:
+    print(round(parawut,2))
+
