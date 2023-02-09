@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Есть словарь кодов товаров
 goods = {
-    'Лампа': '12345',
+    # 'Лампа': '12345',
     'Стол': '23456',
     'Диван': '34567',
     'Стул': '45678',
@@ -46,12 +46,17 @@ store = {
 
 for tovar in goods:
     # print(tovar)
+    total_sum=0
     total_quantity = 0
-    total_price = 0
     for i in store[goods[tovar]]:
-        total_quantity+=i['quantity']
-        total_price+=i['price']
-        print('Товара',tovar,'Количество товаров =',total_quantity,'На общую сумму =',total_quantity*total_price,'рублей')
+        price = 0
+        quantity=0
+        quantity=i['quantity']
+        price=i['price']
+        total_sum=price*quantity
+        total_quantity=total_quantity+quantity
+    total_sum=+total_sum
+    print('Товара',tovar,'Количество товаров =',total_quantity,'На общую сумму =',total_sum,'рублей')
     #     quantity+=store[goods[tovar]]['quantity']
     #     print(quantity)
     #     print(len(store[goods[tovar]]))
