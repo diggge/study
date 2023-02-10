@@ -54,7 +54,8 @@ for tovar in goods:
     print('Товара',tovar,'Количество товаров =',total_quantity,'На общую сумму =',total_sum,'рублей')
     #     quantity+=store[goods[tovar]]['quantity']
     #     print(quantity)
-    #     print(len(store[goods[tovar]]))gf
+    #     print(len(store[goods[tovar]]))g
+    #    f
 
 
 
