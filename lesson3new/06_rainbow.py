@@ -29,5 +29,5 @@ step=30
 for color in rainbow_colors:
     center_position=sd.get_point(250,-100)
     radius=radius+step
-    sd.circle(center_position,radius,color,width=30)
+    sd.circle(center_position,radius,sd.random_color(),width=30)
 sd.pause()
