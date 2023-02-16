@@ -15,7 +15,6 @@ point_0 = sd.get_point(300, 5)
 #     v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
 #     v1.draw()
 #     return v1.end_point
-
 # angle_0 = 90
 # length_0 = 200
 # next_point = branch(point=point_0, angle=angle_0, length=length_0)
@@ -25,15 +24,12 @@ point_0 = sd.get_point(300, 5)
 # next_angle = next_angle - 30
 # next_length = next_length * .75
 # next_point = branch(point=next_point, angle=next_angle, length=next_length)
-
 # написать цикл рисования ветвей с постоянным уменьшением длины на 25% и отклонением на 30 градусов
 # angle_0 = 90
 # length_0 = 200
-#
 # next_angle = angle_0
 # next_length = length_0
 # next_point = point_0
-#
 # while next_length > 1:
 #     next_point = branch(point=next_point, angle=next_angle, length=next_length)
 #     next_angle = next_angle - 30

@@ -1,15 +1,19 @@
 import simple_draw as sd
-n=5
-i=1
-vector1=sd.get_vector(start_point=sd.get_point(300,300), angle=30, length=100, width=3)
-next_vector=vector1
-next_angle=27
-vector1.draw()
-while i<n:
-    i = i + 1
-    next_angle=next_angle+360/n
-    print(i)
-    next_vector = sd.get_vector(start_point=next_vector.end_point, angle=next_angle, length=100, width=3)
-    print(next_vector)
-    next_vector.draw()
+sd.resolution = (700, 800)
+# нарисовать ветку дерева из точки (300, 5) вертикально вверх длиной 100
+# sd.get_vector(point_0,90,100,width=3).draw()
+def branch(point, angle, length):
+    v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
+    v1.draw()
+    return v1.end_point
+point_0 = sd.get_point(300, 5)
+angle_0 = 90
+length_0 = 200
+next_angle = angle_0
+next_length = length_0
+next_point = point_0
+while next_length > 1:
+    next_point = branch(point=next_point, angle=next_angle, length=next_length)
+    next_angle = next_angle - 30
+    next_length = next_length * .75
 sd.pause()
