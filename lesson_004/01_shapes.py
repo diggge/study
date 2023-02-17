@@ -52,8 +52,9 @@ def triangle(point, length, angle):
     v1.draw()
     v2 = sd.get_vector(start_point=v1.end_point, angle=angle + 120, length=length, width=3)
     v2.draw()
-    v3 = sd.get_vector(start_point=v2.end_point, angle=angle + 240, length=length, width=3)
-    v3.draw()
+    # v3 = sd.get_vector(start_point=v2.end_point, angle=angle + 240, length=length, width=3)
+    # v3.draw()
+    sd.line(v2.end_point, v1.start_point, width=3)
 def kvadrat(point, length, angle):
     v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
     v1.draw()
@@ -61,8 +62,9 @@ def kvadrat(point, length, angle):
     v2.draw()
     v3 = sd.get_vector(start_point=v2.end_point, angle=angle + 180, length=length, width=3)
     v3.draw()
-    v4 = sd.get_vector(start_point=v3.end_point, angle=angle + 270, length=length, width=3)
-    v4.draw()
+    # v4 = sd.get_vector(start_point=v3.end_point, angle=angle + 270, length=length, width=3)
+    # v4.draw()
+    sd.line(v3.end_point, v1.start_point, width=3)
 def pyatiugolnik(point, length, angle):
     v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
     v1.draw()
@@ -72,8 +74,9 @@ def pyatiugolnik(point, length, angle):
     v3.draw()
     v4 = sd.get_vector(start_point=v3.end_point, angle=angle + 216, length=length, width=3)
     v4.draw()
-    v5 = sd.get_vector(start_point=v4.end_point, angle=angle + 288, length=length, width=3)
-    v5.draw()
+    # v5 = sd.get_vector(start_point=v4.end_point, angle=angle + 288, length=length, width=3)
+    # v5.draw()
+    sd.line(v4.end_point, v1.start_point, width=3)
 def shestiugolnik(point, length, angle):
     v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
     v1.draw()
@@ -85,28 +88,29 @@ def shestiugolnik(point, length, angle):
     v4.draw()
     v5 = sd.get_vector(start_point=v4.end_point, angle=angle + 240, length=length, width=3)
     v5.draw()
-    v6 = sd.get_vector(start_point=v5.end_point, angle=angle + 300, length=length, width=3)
-    v6.draw()
-x0,y0=sd.random_number(200,400),sd.random_number(100,500)
-point_0=sd.get_point(x0,y0)
-lengt_0=sd.random_number(50,150)
-angle_0=sd.random_number(0,360)
-x1,y1=sd.random_number(200,400),sd.random_number(100,500)
-point_1=sd.get_point(x1,y1)
-lengt_1=sd.random_number(50,150)
-angle_1=sd.random_number(0,360)
-x2,y2=sd.random_number(200,400),sd.random_number(100,500)
-point_2=sd.get_point(x2,y2)
-lengt_2=sd.random_number(50,150)
-angle_2=sd.random_number(0,360)
-x3,y3=sd.random_number(200,400),sd.random_number(100,500)
-point_3=sd.get_point(x3,y3)
-lengt_3=sd.random_number(50,150)
-angle_3=sd.random_number(0,360)
-triangle(point=point_0,length=lengt_0,angle=angle_0)
-kvadrat(point=point_1,length=lengt_1,angle=angle_1)
-pyatiugolnik(point=point_2,length=lengt_2,angle=angle_2)
-shestiugolnik(point=point_3,length=lengt_3,angle=angle_3)
+    # v6 = sd.get_vector(start_point=v5.end_point, angle=angle + 300, length=length, width=3)
+    # v6.draw()
+    sd.line(v5.end_point, v1.start_point,width=3)
+# x0,y0=sd.random_number(200,400),sd.random_number(100,500)
+# point_0=sd.get_point(x0,y0)
+# lengt_0=sd.random_number(50,150)
+# angle_0=sd.random_number(0,360)
+# x1,y1=sd.random_number(200,400),sd.random_number(100,500)
+# point_1=sd.get_point(x1,y1)
+# lengt_1=sd.random_number(50,150)
+# angle_1=sd.random_number(0,360)
+# x2,y2=sd.random_number(200,400),sd.random_number(100,500)
+# point_2=sd.get_point(x2,y2)
+# lengt_2=sd.random_number(50,150)
+# angle_2=sd.random_number(0,360)
+# x3,y3=sd.random_number(200,400),sd.random_number(100,500)
+# point_3=sd.get_point(x3,y3)
+# lengt_3=sd.random_number(50,150)
+# angle_3=sd.random_number(0,360)
+# triangle(point=point_0,length=lengt_0,angle=angle_0)
+# kvadrat(point=point_1,length=lengt_1,angle=angle_1)
+# pyatiugolnik(point=point_2,length=lengt_2,angle=angle_2)
+# shestiugolnik(point=point_3,length=lengt_3,angle=angle_3)
 
 
 # Часть 1-бис.
@@ -131,6 +135,41 @@ shestiugolnik(point=point_3,length=lengt_3,angle=angle_3)
 # А теперь - сколько надо работы что бы внести изменения в код? Выгода на лицо :)
 # Поэтому среди программистов есть принцип D.R.Y. https://clck.ru/GEsA9
 # Будьте ленивыми, не используйте копи-пасту!
+# n=5
+# i=1
+# vector1=sd.get_vector(start_point=sd.get_point(300,300), angle=30, length=100, width=3)
+# next_vector=vector1
+# next_angle=27
+# vector1.draw()
+# while i<n:
+#     i = i + 1
+#     next_angle=next_angle+360/n
+#     print(i)
+#     next_vector = sd.get_vector(start_point=next_vector.end_point, angle=next_angle, length=100, width=3)
+#     print(next_vector)
+#     next_vector.draw()
 
-
+def figure(point,length,angle,chislo_storon):
+    i,next_angle=1,angle
+    next_vector=sd.get_vector(point,angle,length,3)
+    vector1=next_vector
+    next_vector.draw()
+    while i<chislo_storon-1:
+        i+=1
+        next_angle+=360/chislo_storon
+        next_vector=sd.get_vector(next_vector.end_point, next_angle, length, 3)
+        next_vector.draw(color=sd.random_color())
+    sd.line(next_vector.end_point, vector1.start_point, width=3)
+print ('Введите координаты x0')
+x0=int(input())
+print ('Введите координаты y0')
+y0=int(input())
+print('Введите длину стороны фигуры')
+length=int(input())
+print('Введите угол наклона фигуры')
+angle=int(input())
+print('Введите количество сторон фигуры')
+chislo_storon=int(input())
+print(sd.get_point(x0,y0),length,angle)
+figure(sd.get_point(x0,y0),length=length,angle=angle,chislo_storon=chislo_storon)
 sd.pause()
