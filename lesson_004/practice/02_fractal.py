@@ -47,7 +47,6 @@ def branch(point, angle, length, delta):
     next_length = length * .75
     branch(point=next_point, angle=next_angle, length=next_length, delta=delta)
 
-
 for delta in range(0, 51, 10):
     branch(point=point_0, angle=90, length=150, delta=delta)
 for delta in range(-50, 1, 10):

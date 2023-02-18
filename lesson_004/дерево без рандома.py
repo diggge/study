@@ -17,7 +17,7 @@ def draw_branches(point0,angle0,angle,length,width):
     while length>10:
          print(v1.end_point,v2.end_point)
          length=length*0.7
-         width=width-3
+         width=width-4
          if width>1:
              draw_branches(point0=v1.end_point, angle0=angle0+angle, angle=angle, length=length, width=width)
              draw_branches(point0=v2.end_point, angle0=angle0-angle, angle=angle, length=length, width=width)
