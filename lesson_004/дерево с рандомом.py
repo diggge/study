@@ -10,7 +10,7 @@ def draw_branches(point0,angle0,angle,length,width):
         v1.draw()
         v2.draw()
     while length>10:
-         x=sd.random_number(70,100)
+         x=sd.random_number(68,105)
          y=sd.random_number(90,110)
          length=length*0.8*x/100
          angle=angle*y/100
