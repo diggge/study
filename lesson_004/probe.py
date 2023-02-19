@@ -1,19 +1,22 @@
+# -*- coding: utf-8 -*-
 import simple_draw as sd
-sd.resolution = (1000, 800)
-def draw_branches(point0,angle0,angle,length):
-    if length < 10:
-        return
-    else:
-        print(angle0+angle,angle0-angle,round(length,1))
-        v1 = sd.get_vector(start_point=point0,angle=angle0+angle,length=length,width=1)
-        v2 = sd.get_vector(start_point=point0,angle=angle0-angle,length=length,width=1)
-        v1.draw()
-        v2.draw()
-        length=length*0.7
-        draw_branches(point0=v1.end_point, angle0=angle0+angle,angle=angle,length=length)
-        draw_branches(point0=v2.end_point, angle0=angle0-angle,angle=angle, length=length)
-v = sd.get_vector(start_point=sd.get_point(500,30), angle=90, length=200, width=1)
-v.draw()
-point0=v.end_point
-draw_branches(point0=point0,angle0=90,angle=30,length=200)
+sd.resolution = (1200, 600)
+x = sd.random_number(350,1000)
+y = 600
+while True:
+    sd.clear_screen()
+    point = sd.get_point(x, y)
+    sd.snowflake(center=point, length=30)
+    y -= 5
+    if y < 30:
+        break
+    x = x+sd.random_number(-10,10)+5
+    sd.sleep(0.1)
+    if sd.user_want_exit():
+        break
+# реализовать падение одной снежинки из произвольного места экрана
+
+# реализовать падение одной снежинки с ветром - смещение в сторону
+
+
 sd.pause()
