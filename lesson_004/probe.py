@@ -11,12 +11,13 @@ while True:
     if y1 < 30:
         break
     x1 = x1+sd.random_number(-10,10)+5
-    point2 = sd.get_point(x2, y2)
-    sd.snowflake(center=point2, length=30)
+
+    sd.snowflake(center=sd.get_point(x2, y2), length=30)
     y2 -= 5
     if y2 < 30:
         break
     x2 = x2 + 5
+
     sd.sleep(0.04)
     if sd.user_want_exit():
         break
