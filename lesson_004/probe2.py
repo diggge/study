@@ -5,26 +5,23 @@ import simple_draw as sd
 sd.resolution = (1200, 600)
 x=[]
 y=[]
-x[0]=x.append(sd.random_number(0,900))
-for i in range(1,7):
-    x[i]=x[i-1]+sd.random_number(0,100)
-    x.append(sd.random_number(0,900))
-    y.append(600)
-print(x,y)
 while True:
     sd.clear_screen()
-    for j in range(7):
-        point=sd.get_point(x[j],y[j])
-        print(j,x[j], y[j], point)
-        print(j,x[j], y[j], point)
+    for i in range(10):
+        if i==0:
+            x.append((sd.random_number(0, 100)))
+            y.append(sd.random_number(600, 650))
+        else:
+            x.append(x[i-1]+sd.random_number(50, 150))
+            y.append(y[i-1]+sd.random_number(-50, 50))
+        point=sd.get_point(x[i],y[i])
+        print(i,x[i], y[i], point)
         sd.snowflake(center=point, length=30)
-        y[j] -= 5
-        print('y=',y[j])
-        x[j] = x[j] + sd.random_number(-10, 10) + 2
-    if y[j] < 30:
+        y[i] -= 5
+        x[i] = x[i] + sd.random_number(-10, 10) + 2
+    if y[i] < 0:
         break
-
-    sd.sleep(0.1)
+    sd.sleep(0.01)
     if sd.user_want_exit():
         break
 # реализовать падение одной снежинки из произвольного места экрана
