@@ -1,19 +1,30 @@
+# -*- coding: utf-8 -*-
 import simple_draw as sd
-sd.resolution = (700, 800)
-# нарисовать ветку дерева из точки (300, 5) вертикально вверх длиной 100
-# sd.get_vector(point_0,90,100,width=3).draw()
-def branch(point, angle, length):
-    v1 = sd.get_vector(start_point=point, angle=angle, length=length, width=3)
-    v1.draw()
-    return v1.end_point
-point_0 = sd.get_point(300, 5)
-angle_0 = 90
-length_0 = 200
-next_angle = angle_0
-next_length = length_0
-next_point = point_0
-while next_length > 1:
-    next_point = branch(point=next_point, angle=next_angle, length=next_length)
-    next_angle = next_angle - 30
-    next_length = next_length * .75
+sd.resolution = (1200, 600)
+x1,y1 = sd.random_number(150,700), 600
+x2,y2 = sd.random_number(150,400), 600
+while True:
+    sd.clear_screen()
+# Начало i снежинки
+    sd.snowflake(center=sd.get_point(x1, y1), length=30)
+    y1 -= 5
+    if y1 < 30:
+        break
+    x1 = x1+sd.random_number(-10,10)+5
+#конец i снежинки
+#начало i+1 снежинки
+    sd.snowflake(center=sd.get_point(x2, y2), length=30)
+    y2 -= 5
+    if y2 < 30:
+        break
+    x2 = x2 ++sd.random_number(-30,30)+5
+#конец i+1 снежинки
+    sd.sleep(0.04)
+    if sd.user_want_exit():
+        break
+# реализовать падение одной снежинки из произвольного места экрана
+
+# реализовать падение одной снежинки с ветром - смещение в сторону
+
+
 sd.pause()
