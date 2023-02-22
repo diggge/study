@@ -38,6 +38,4 @@ while True:
 #  - сдвинуть снежинку
 #  - отрисовать её цветом sd.COLOR_WHITE на новом месте
 #  - после отрисовки всех снежинок, перед sleep(), вызвать sd.finish_drawing()fdsfsadfsadfsadf
-
-
 sd.pause()
