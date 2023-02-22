@@ -94,5 +94,5 @@ device=devices_ID
 # print(device)
 # commands = ["configure terminal", "radius server s401-th-log", "timeout 300","retransmit 100", "end", "wr","exit"]
 commands = ["configure terminal", "no router eigrp 250", "no vpdn-group 1","no int di 0","end", "wr"]
-result = send_show_command(ip='10.13.30.1', username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
+result = send_show_command(ip='devices_filials', username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
 pprint(result, width=120)

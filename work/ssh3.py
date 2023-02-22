@@ -68,4 +68,4 @@ for oborudovanie in devices_x:
         pprint(result, width=120)
         print('На данном оборудовании', oborudovanie, 'скрипт отработал неудачно')
 # result = send_show_command(ip='10.9.30.1', username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
-# pprint(result, width=120)
+
