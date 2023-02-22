@@ -82,7 +82,7 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 			  '10.17.30.1','10.17.30.2',
 			  '10.18.30.1','10.18.30.2','10.18.30.3','10.18.30.4','10.18.30.5']
 devices=devices_filials_routers
-# print(device)1sdf
+# print(device)1sdfsadf
 #commands = ["conf ter", "no vpdn-group 2",'no ip http secure-server','end','wr']
 commands = ["configure terminal", "ntp server 10.77.30.1 prefer", "end", "wr"]
 for oborudovanie in devices:
