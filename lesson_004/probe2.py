@@ -8,7 +8,7 @@ y=[]
 length=[]
 factor_a=[]
 while True:
-    sd.clear_screen()
+    sd.start_drawing()
     for i in range(10):
         if i==0:
             x.append((sd.random_number(0, 100)))
@@ -20,9 +20,10 @@ while True:
         factor_a.append(sd.random_number(5, 8))
         point=sd.get_point(x[i],y[i])
         print(i,x[i], y[i], point,length[i])
-        sd.snowflake(center=point, length=length[i],factor_a=factor_a[i]/10)
+        sd.snowflake(center=point, length=length[i],factor_a=factor_a[i]/10,color=sd.COLOR_WHITE)
         y[i] -= 2
         x[i] = x[i] + sd.random_number(-10, 10) + 2
+
     if y[i] < 0:
         break
     sd.sleep(0.01)
