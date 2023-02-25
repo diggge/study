@@ -2,6 +2,7 @@
 # - создать списки данных для отрисовки N снежинок
 # - нарисовать падение этих N снежинокf
 import simple_draw as sd
+
 sd.resolution = (1200, 600)
 x = []
 y = []
@@ -20,7 +21,8 @@ while True:
         factor_a.append(sd.random_number(5, 8))
         point = sd.get_point(x[i], y[i])
         print(i, x[i], y[i], point, length[i])
-        sd.snowflake(center=sd.get_point(x[i], y[i]), length=length[i], factor_a=factor_a[i] / 10, color=sd.background_color)
+        sd.snowflake(center=sd.get_point(x[i], y[i]), length=length[i], factor_a=factor_a[i] / 10,
+                     color=sd.background_color)
         y[i] -= 2
         x[i] = x[i] + sd.random_number(-10, 10) + 2
         sd.snowflake(center=sd.get_point(x[i], y[i]), length=length[i], factor_a=factor_a[i] / 10, color=sd.COLOR_WHITE)
