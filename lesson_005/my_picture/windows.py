@@ -1,8 +1,17 @@
 import simple_draw as sd
-sd.resolution = (1000, 900)
 print(sd.resolution[0])
 def paint_windows(center_position,length_x,length_y):
     sd.rectangle(sd.get_point(center_position[0]-length_x/2,center_position[1]-length_y/2),sd.get_point(center_position[0],center_position[1]+length_y/2),color=sd.COLOR_WHITE,width=1)
     sd.rectangle(sd.get_point(center_position[0],center_position[1]-length_y/2),sd.get_point(center_position[0]+length_x/2,center_position[1]+length_y/2),color=sd.COLOR_WHITE,width=1)
+    v_ln = sd.get_vector(sd.get_point(center_position[0] - length_x / 2, center_position[1] - length_y / 2), 200, length=50, width=1)
+    v_lv = sd.get_vector(sd.get_point(center_position[0] - length_x / 2, center_position[1] + length_y / 2), 160, length=50, width=1)
+    v_pn = sd.get_vector(sd.get_point(center_position[0] + length_x / 2, center_position[1] - length_y / 2), 340, length=50, width=1)
+    v_vv = sd.get_vector(sd.get_point(center_position[0] + length_x / 2, center_position[1] + length_y / 2), 20, length=50, width=1)
+    v_ln.draw(color=sd.COLOR_WHITE)
+    v_lv.draw(color=sd.COLOR_WHITE)
+    v_pn.draw(color=sd.COLOR_WHITE)
+    v_vv.draw(color=sd.COLOR_WHITE)
+    sd.line(v_ln.end_point,v_lv.end_point,color=sd.COLOR_WHITE,width=1)
+    sd.line(v_pn.end_point, v_vv.end_point, color=sd.COLOR_WHITE, width=1)
 paint_windows((300,300),100,100)
 sd.pause()
