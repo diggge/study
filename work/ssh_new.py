@@ -84,7 +84,7 @@ devices_filials = ["10.3.30.1", "10.3.30.2",
 devices=devices_filials_routers
 # print(device)1sdfsadfыва
 #commands = ["conf ter", "no vpdn-group 2",'no ip http secure-server','end','wr']
-commands = ["configure terminal", "ntp server 10.77.30.1 prefer", "end", "wr"]
+commands = ["configure terminal", "access-list 23 permit 10.100.0.0 0.0.0.255", "access-list 23 permit 10.200.0.0 0.0.0.255","access-list 23 permit 10.77.0.0 0.0.255.255","end", "wr"]
 for oborudovanie in devices:
     try:
         result = send_show_command(ip=oborudovanie, username='root', enable="Cf[f'ythuj2104", password="Cf[f'ythuj2104", command=commands)
