@@ -5,6 +5,7 @@ def paint_windows(center_position,length_x,length_y):
     sd.rectangle(sd.get_point(center_position[0],center_position[1]-length_y/2),sd.get_point(center_position[0]+length_x/2,center_position[1]+length_y/2),color=sd.background_color,width=0)
     sd.rectangle(sd.get_point(center_position[0]-length_x/2,center_position[1]-length_y/2),sd.get_point(center_position[0],center_position[1]+length_y/2),color=sd.COLOR_WHITE,width=1)
     sd.rectangle(sd.get_point(center_position[0],center_position[1]-length_y/2),sd.get_point(center_position[0]+length_x/2,center_position[1]+length_y/2),color=sd.COLOR_WHITE,width=1)
+    sd.lines([sd.get_point(100,200),sd.get_point(150,350)],color=sd.COLOR_WHITE, closed=True, width=0)
     v_ln = sd.get_vector(sd.get_point(center_position[0] - length_x / 2, center_position[1] - length_y / 2), 200, length=50, width=1)
     v_lv = sd.get_vector(sd.get_point(center_position[0] - length_x / 2, center_position[1] + length_y / 2), 160, length=50, width=1)
     v_pn = sd.get_vector(sd.get_point(center_position[0] + length_x / 2, center_position[1] - length_y / 2), 340, length=50, width=1)
