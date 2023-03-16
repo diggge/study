@@ -20,7 +20,7 @@
 #  ввод вторым игроком хода - позицию и кол-во камней
 #  вывод расположения камней
 
-from nime_engine import put_stones, get_bunches, is_gameover, take_from_bunch
+from nim_engine import put_stones, get_bunches, is_gameover, take_from_bunch
 from termcolor import cprint, colored
 
 put_stones()
