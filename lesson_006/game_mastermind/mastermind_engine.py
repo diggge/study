@@ -30,13 +30,16 @@ def chek_number():
     spisok_2=[i,j,k,l]
     bulls,cows=0,0
     for g in spisok_1:
-        print(spisok_1[g])
+        for h in spisok_2:
+            if g==h:
+                bulls=bulls+1
+
         # if spisok_1[g]==spisok_2[g]:
         #     bulls+=bulls
     #     for h in spisok_2:
     #         if spisok_2[h]=spisok_1[g]:
     #             cows+=cows
-    print(spisok_1[1],spisok_2)
+    print(spisok_1,spisok_2)
     print(bulls,cows)
 #   проверить_число(NN) - возвращает словарь {'bulls': N, 'cows': N}
 # Загаданное число хранить в глобальной переменной.
