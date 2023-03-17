@@ -10,8 +10,19 @@
 # Все общение с пользователем делать в текущем модуле. Представьте, что движок игры могут использовать
 # разные клиенты - веб, чатбот, приложение, етс - они знают как спрашивать и отвечать пользователю.
 # Движок игры реализует только саму функциональность игры.
-from mastermind_engine import think_a_number,chek_number
-x=think_a_number()
-print(x,x//1000,x//100%10,x//10%10,x%10)
-chislo_igroka = input('Напишите четырехзначное число:   ')
-print(chislo_igroka)
+from mastermind_engine import think_a_number,chek_number,is_gameover
+while True:
+    print('Игра «Быки и коровы» началась')
+    x=think_a_number()
+    print(x)
+    kolichestvo_khodov=0
+    while True:
+        y = input('Напишите вариант четырехзначного числа c неповторяющимися цифрами :   ')
+        chek_number(int(x), int(y))
+        kolichestvo_khodov += 1
+        if is_gameover():
+            print('Угадали!!! Сделанное количество ходов =', kolichestvo_khodov)
+            break
+    restart_game=input('Начать заново? Если хотите выйти из игры напишите выход, если хотите начать заново, наберите что-угодно')
+    if restart_game == 'выход':
+        break
