@@ -14,19 +14,19 @@ from mastermind_engine import think_a_number,chek_number,is_gameover
 while True:
     print('Игра «Быки и коровы» началась')
     x=think_a_number()
-    print(x)
+    # print(x)
     kolichestvo_khodov=0
     while True:
         while True:
             try:
                 y = int(input('Напишите вариант четырехзначного числа c неповторяющимися цифрами :  '))
-                if y<10000 or y>1023:
-                    raise Exception
-                break
+                spisok_y = [y // 1000, y // 100 % 10, y // 10 % 10, y % 10]
+                if (1023 < y < 10000 and len(spisok_y) == len(set(spisok_y))):
+                    break
+                else:
+                    raise ValueError()
             except ValueError:
-                print('Ошибка ввода!!!')
-            except Exception:
-                print('Напишите вариант четырехзначного числа c неповторяющимися цифрами еще раз:')
+                print("Ошибка! введенное число не отвечает требованиям")
         chek_number(int(x), int(y))
         kolichestvo_khodov += 1
         if is_gameover():

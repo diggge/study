@@ -1,7 +1,8 @@
 while True:
     try:
         y = int(input('Напишите вариант четырехзначного числа c неповторяющимися цифрами :  '))
-        if (1023< y < 10000 and y // 1000!= y // 100 % 10|| y // 10 % 10, y % 10):
+        spisok_y=[y // 1000, y // 100 % 10, y // 10 % 10, y % 10]
+        if (1023< y < 10000 and len(spisok_y)==len(set(spisok_y))):
             break
         else:
             raise ValueError()
