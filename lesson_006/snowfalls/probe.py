@@ -9,13 +9,17 @@ for i in range(10):
     massiv.append([i,x[i],y[i]])
 print(massiv)
 for i in range(10):
-    if x[i]<5 or y[i]<5:
+    if x[i]<4 or y[i]<4:
         finish.append(i)
 print(finish)
-# massiv_dict=dict(massiv)
-# print(massiv_dict)
-# for i in finish:
-#     print(i)
-#     massiv.pop(i)
-massiv.pop(1)
+finish.reverse()
+print(finish)
+for i in finish:
+    print(i)
+    for j in massiv:
+        if i==j[0]:
+            massiv.pop(i)
 print(massiv)
+
+
+

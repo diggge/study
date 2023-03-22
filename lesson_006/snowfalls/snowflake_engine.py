@@ -41,7 +41,12 @@ def finish_snowflake(N):
     print(finish)
 #  удалить_снежинки(номера) - удаляет снежинки с номерами из списка
 def del_snowflake(N):
+    finish.reverse()
     for i in finish:
+        for j in snowflake:
+            if i==j[0]:
+                snowflake.pop(i)
+
         
 
 
