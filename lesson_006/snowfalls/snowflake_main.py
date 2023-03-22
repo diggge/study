@@ -6,8 +6,6 @@ create_snowflake(N)
 while True:
     sd.start_drawing()
     draw_snowflake(N, color=sd.COLOR_WHITE)
-
-
     #  нарисовать_снежинки_цветом(color=sd.background_color)
     #  сдвинуть_снежинки()
     #  нарисовать_снежинки_цветом(color)
