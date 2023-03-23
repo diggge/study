@@ -1,25 +1,12 @@
-from random import random,randint
-x=[]
-y=[]
-massiv=[]
-finish=[]
-for i in range(10):
-    x.append(randint(0,10))
-    y.append(randint(10,20))
-    massiv.append([i,x[i],y[i]])
-print(massiv)
-for i in range(10):
-    if x[i]<4 or y[i]<4:
-        finish.append(i)
-print(finish)
-finish.reverse()
-print(finish)
-for i in finish:
-    print(i)
-    for j in massiv:
-        if i==j[0]:
-            massiv.pop(i)
-print(massiv)
+import snowflake_engine
+snowflake_engine.snowflake=[[0, 998], [1, 951], [3, 598], [6, 526], [8, 120], [9, 572], [10, 647], [11, 1011], [14, 49], [15, 1078], [17, 819], [18, 316], [19, 62]]
+snowflake_engine.finish = [2, 6, 11, 12]
+print('snowflake=', snowflake_engine.snowflake)
+print('finish=', snowflake_engine.finish)
+snowflake_engine.del_snowflake()
+print('_snowflake=',snowflake_engine.snowflake)
+
+
 
 
 
