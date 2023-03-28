@@ -16,30 +16,89 @@
 #   print(Water(), '+', Air(), '=', Water() + Air())
 #   print(Fire(), '+', Air(), '=', Fire() + Air())
 # TODO здесь ваш код
-Elementy=[Water,Air,Fire,Earth,storm,steam,dirt,ligthing,dust,lava]
+# Elementy=[Water,Air,Fire,Earth,storm,steam,dirt,ligthing,dust,lava]
 
 class Water:
     def __str__(self):
-        return 'Я вода'
+        return 'Вода'
     def __add__(self, other):
-        return Alchemy(part1=self, part2=other)
+        if isinstance(other,Air):
+            return Storm(part1=self,part2=other)
+        elif isinstance(other,Fire):
+            return Steam(part1=self,part2=other)
+        elif isinstance(other,Earth):
+            return Dirt(part1=self,part2=other)
 class Air:
     def __str__(self):
-        return 'Я воздух'
-    def __add__(self, other):
-        return Alchemy(part1=self, part2=other)
+        return 'Воздух'
+    def __add__(self,other):
+        if isinstance(other, Fire):
+            return Lighting(part1=self, part2=other)
+        elif isinstance(other, Earth):
+            return Dust(part1=self, part2=other)
 class Fire:
     def __str__(self):
-        return 'Я огонь'
+        return 'Огонь'
     def __add__(self, other):
-        return Alchemy(part1=self, part2=other)
-class Alchemy:
+        if isinstance(other, Earth):
+            return Lava(part1=self, part2=other)
+class Earth:
+    def __str__(self):
+        return 'Земля'
+    # def __add__(self, other):
+    #     if isinstance(other, Earth):
+    #         return Lava(part1=self, part2=other)
+
+class Storm:
     def __init__(self, part1, part2):
         self.part1 = part1
         self.part2 = part2
     def __str__(self):
-        return 'Игра Алхимик. Соединение двух элементов' + str(self.part1) + ' и ' + str(self.part2)
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Шторм'
+class Steam:
+    def __init__(self, part1, part2):
+        self.part1 = part1
+        self.part2 = part2
+    def __str__(self):
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Пар'
 
+class Dirt:
+    def __init__(self, part1, part2):
+        self.part1 = part1
+        self.part2 = part2
+
+    def __str__(self):
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Грязь'
+
+class Lighting:
+    def __init__(self, part1, part2):
+        self.part1 = part1
+        self.part2 = part2
+    def __str__(self):
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Молния'
+
+class Dust:
+    def __init__(self, part1, part2):
+        self.part1 = part1
+        self.part2 = part2
+
+    def __str__(self):
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Пыль'
+
+class Lava:
+    def __init__(self, part1, part2):
+        self.part1 = part1
+        self.part2 = part2
+
+    def __str__(self):
+        return 'Игра Алхимик. Соединение двух элементов: ' + str(self.part1) + ' + ' + str(self.part2) + '  = Лава'
+
+print(Water()+Air())
+print(Water()+Fire())
+print(Water()+Earth())
+print(Air()+Fire())
+print(Air()+Earth())
+print(Fire()+Earth())
 
 
 

@@ -13,7 +13,7 @@ class Snowflake:
         self.number = number
         self.x = sd.random_number(0, 1100)
         self.y = sd.random_number(600, 650)
-        self.length=sd.random_number(10, 15)
+        self.length=sd.random_number(12, 17)
         self.factor_a=(sd.random_number(5, 9)) / 10
     def __str__(self):
         return 'Стежинка № - {}, координаты x,y {},{}, размер снежинки {}, фактор_а {}'.format(self.number, self.x, self.y,self.length,self.factor_a)
@@ -24,10 +24,10 @@ class Snowflake:
         # print('Рисую  снежинку № {} c параметрами x={},y={},length={},factor_a={}'.format(self.number,self.x, self.y,self.length,self.factor_a))
     def move(self):
         self.x += sd.random_number(-5,5)+1
-        self.y -= sd.random_number(5, 35)
+        self.y -= sd.random_number(0, 10)
         # print('Cместил снежинку № {} координату x={},координату y={}'.format(self.number, self.x, self.y))
     def clear_previous_picture(self):
-        if self.number==9:
+        if self.number==19:
         # sd.snowflake(center=sd.get_point(self.x, self.y), length=self.length, color=sd.background_color, factor_a=self.factor_a)
             sd.clear_screen()
             print('Стираю нарисованные объекты')
@@ -51,7 +51,7 @@ class Snowflake:
 #         break
 # Много снежинок
 flakes=[]
-for N in range(10):
+for N in range(20):
     flakes.append(Snowflake(N))
 while True:
     for flake in flakes:
@@ -61,7 +61,7 @@ while True:
         flake.can_fall()
     # if not flake.can_fall():
     #     break
-        sd.sleep(0.03)
+        sd.sleep(0.001)
     if sd.user_want_exit():
         break
 
