@@ -14,40 +14,57 @@ class Snowflake:
         self.x = sd.random_number(0, 1100)
         self.y = sd.random_number(600, 650)
         self.length=sd.random_number(10, 15)
-        self.factor_a=(sd.random_number(1, 9)) / 10
+        self.factor_a=(sd.random_number(5, 9)) / 10
     def __str__(self):
         return 'Стежинка № - {}, координаты x,y {},{}, размер снежинки {}, фактор_а {}'.format(self.number, self.x, self.y,self.length,self.factor_a)
     def draw(self):
         sd.start_drawing()
         sd.snowflake(center=sd.get_point(self.x,self.y),length=self.length,color=sd.COLOR_WHITE,factor_a=self.factor_a)
         sd.finish_drawing()
-        print('Рисую  снежинку № {} c параметрами x={},y={},length={},factor_a={}'.format(self.number,self.x, self.y,self.length,self.factor_a))
+        # print('Рисую  снежинку № {} c параметрами x={},y={},length={},factor_a={}'.format(self.number,self.x, self.y,self.length,self.factor_a))
     def move(self):
         self.x += sd.random_number(-5,5)+1
-        self.y -= sd.random_number(0, 15)
-        print('Cместил снежинку № {} координату x={},координату y={}'.format(self.number, self.x, self.y))
+        self.y -= sd.random_number(5, 35)
+        # print('Cместил снежинку № {} координату x={},координату y={}'.format(self.number, self.x, self.y))
     def clear_previous_picture(self):
-        sd.clear_screen()
+        if self.number==9:
+        # sd.snowflake(center=sd.get_point(self.x, self.y), length=self.length, color=sd.background_color, factor_a=self.factor_a)
+            sd.clear_screen()
+            print('Стираю нарисованные объекты')
     def can_fall(self):
         if self.y<10:
             self.x = sd.random_number(0, 1100)
             self.y=sd.random_number(600, 650)
             self.length = sd.random_number(10, 15)
             self.factor_a = (sd.random_number(1, 9)) / 10
-# TODO здесь ваш код
-flake = Snowflake(1)
-
-
+# Одна снежинка
+# flake = Snowflake(1)
+# while True:
+#     flake.clear_previous_picture()
+#     flake.draw()
+#     flake.move()
+#     flake.can_fall()
+#     # if not flake.can_fall():
+#     #     break
+#     sd.sleep(0.1)
+#     if sd.user_want_exit():
+#         break
+# Много снежинок
+flakes=[]
+for N in range(10):
+    flakes.append(Snowflake(N))
 while True:
-    flake.clear_previous_picture()
-    flake.draw()
-    flake.move()
-    flake.can_fall()
+    for flake in flakes:
+        flake.clear_previous_picture()
+        flake.move()
+        flake.draw()
+        flake.can_fall()
     # if not flake.can_fall():
     #     break
-    sd.sleep(0.1)
+        sd.sleep(0.03)
     if sd.user_want_exit():
         break
+
 
 # шаг 2: создать снегопад - список объектов Снежинка в отдельном списке, обработку примерно так:
 # flakes = get_flakes(count=N)  # создать список снежинок
