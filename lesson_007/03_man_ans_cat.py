@@ -31,7 +31,7 @@ class Cat:
         self.health = 50
         self.entertainment = 50
         self.home= None
-        # self.man= None
+        self.man= None
     def __str__(self):
         return 'Я - {}, сытость {},здоровье {},развлечение {}'.format(self.name,self.fullness,self.health,self.entertainment)
     def eat(self):
@@ -51,13 +51,19 @@ class Cat:
         print(Fore.CYAN+ '{} дерет обои'. format(self.name))
         self.entertainment+=30
         self.fullness-=10
-        # self.man.nervous_system-=20
+        self.man.nervous_system-=20
         self.home.dirt+=10
 
     def go_to_the_home(self, home):
         self.home = home
         self.fullness -= 10
         print(Fore.CYAN+'{} Вьехал в дом'.format(self.name))
+
+    def go_to_the_man(self, man):
+        self.man = man
+        self.fullness -= 10
+        print(Fore.CYAN + '{} Вьехал в человека'.format(self.name))
+
     def act(self):
         if (self.fullness<=0 or self.health<=0 or self.entertainment<=0):
             print(Fore.RED+'{} откинул копыта'. format(self.name))
@@ -96,11 +102,12 @@ class Man:
     def watch_MTV(self):
         print(Fore.LIGHTBLUE_EX+'{} смотрел MTV целый день'.format(self.name))
         self.fullness -= 10
-        self.nervous_system+=10
+        self.nervous_system+=20
     def shopping(self):
         if self.home.money >= 50:
             print(Fore.MAGENTA+'{} сходил в магазин за едой'.format(self.name))
             self.home.money -= 50
+            self.nervous_system+=20
             self.home.man_food += 50
             self.home.cat_food += 50
         else:
@@ -153,6 +160,7 @@ busya = Cat(name='Busya')
 filippo = Man(name='Filippo')
 busya.go_to_the_home(home=my_sweet_home)
 filippo.go_to_the_home(home=my_sweet_home)
+busya.go_to_the_man(man=filippo)
 # filippo.pick_up_a_cat(cat=busya, home=my_sweet_home)
 for day in range(1, 366):
     print('================ день {} =================='.format(day))
