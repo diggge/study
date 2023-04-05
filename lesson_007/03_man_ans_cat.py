@@ -52,7 +52,7 @@ class Cat:
         self.entertainment+=30
         self.fullness-=10
         self.man.nervous_system-=20
-        self.home.dirt+=10
+        self.home.cleanlinesss-=10
 
     def go_to_the_home(self, home):
         self.home = home
@@ -83,13 +83,13 @@ class Cat:
 class Man:
     def __init__(self, name):
         self.name = name
-        self.fullness = 50
-        self.nervous_system = 50
+        self.fullness = 80
+        self.nervous_system = 80
         self.home = None
     def __str__(self):
         return 'Я - {}, сытость {},нервная система {}'.format(self.name, self.fullness, self.nervous_system)
     def eat(self):
-        if self.home.man_food >= 10:
+        if self.home.man_food >= 20:
             print(Fore.YELLOW+'{} поел'.format(self.name))
             self.fullness += 10
             self.home.man_food -= 10
@@ -122,14 +122,18 @@ class Man:
     #     cat.go_to_the_home(self)
     #     self.fullness -=10
     #     print(Fore.CYAN+'{} Подобрал кота {} в дом {}'.format(self.name, self.cat, self.home))
-    def clean_home(self,home):
-        self.home=home
-        self.home.dirt-=20
+    def clean_home(self):
+        # self.home = home
+        self.home.cleanlinesss-=20
         self.fullness-=10
         self.nervous_system-=10
+    def caress_cat(self):
+        self.nervous_system+=50
+        self.fullness -= 10
+
 
     def act(self):
-        if self.fullness <= 0:
+        if (self.fullness <= 0 or self.nervous_system <=0 ):
             print(Fore.RED+ '{} умер...'.format(self.name))
             return
         dice = randint(1, 6)
@@ -139,6 +143,10 @@ class Man:
             self.shopping()
         elif self.home.money < 100:
             self.work()
+        elif self.home.cleanlinesss <30:
+            self.clean_home()
+        elif self.nervous_system <30:
+            self.caress_cat()
         elif dice == 1:
             self.work()
         elif dice == 2:
@@ -151,9 +159,9 @@ class Home:
         self.man_food = 50
         self.cat_food = 50
         self.money = 50
-        self.dirt = 0
+        self.cleanlinesss = 0
     def __str__(self):
-        return 'В доме еды осталось {}, кошачей еды осталось {},денег осталось {}, уровень грязности дома {}'.format(self.man_food,self.cat_food, self.money,self.dirt)
+        return 'В доме еды осталось {}, кошачей еды осталось {},денег осталось {}, уровень грязности дома {}'.format(self.man_food,self.cat_food, self.money,self.cleanlinesss)
     
 my_sweet_home = Home()
 busya = Cat(name='Busya')
@@ -162,7 +170,7 @@ busya.go_to_the_home(home=my_sweet_home)
 filippo.go_to_the_home(home=my_sweet_home)
 busya.go_to_the_man(man=filippo)
 # filippo.pick_up_a_cat(cat=busya, home=my_sweet_home)
-for day in range(1, 366):
+for day in range(1, 60):
     print('================ день {} =================='.format(day))
     filippo.act()
     busya.act()
