@@ -133,26 +133,28 @@ class Man:
 
 
     def act(self):
-        if (self.fullness <= 0 or self.nervous_system <=0 ):
+        if (self.fullness<= 0 or self.nervous_system<=0 ):
             print(Fore.RED+ '{} умер...'.format(self.name))
             return
-        dice = randint(1, 6)
-        if self.fullness < 20:
-            self.eat()
-        elif self.home.man_food < 30:
-            self.shopping()
-        elif self.home.money < 100:
-            self.work()
-        elif self.home.cleanlinesss <30:
-            self.clean_home()
-        elif self.nervous_system <30:
-            self.caress_cat()
-        elif dice == 1:
-            self.work()
-        elif dice == 2:
-            self.eat()
         else:
-            self.watch_MTV()
+            dice1 = randint(1, 6)
+            if self.fullness < 20:
+                self.eat()
+            elif self.home.man_food < 30:
+                self.shopping()
+            elif self.home.money < 100:
+                self.work()
+            elif self.home.cleanlinesss <30:
+                self.clean_home()
+            elif self.nervous_system <30:
+                self.caress_cat()
+            elif dice1 == 1:
+                self.work()
+            elif dice1 == 2:
+                self.eat()
+            else:
+                self.watch_MTV()
+
             
 class Home:
     def __init__(self):
