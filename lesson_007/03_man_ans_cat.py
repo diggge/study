@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from random import randint
 from colorama import Fore, Back, Style
+
+
 # Доработать практическую часть урока lesson_007/python_snippets/08_practice.py
 
 # Необходимо создать класс кота. У кота есть аттрибуты - сытость и дом (в котором он живет).
@@ -32,9 +34,11 @@ class Cat:
         self.entertainment = 50
         self.home = None
         self.man = None
+
     def __str__(self):
         return 'Я - {}, сытость {},здоровье {},развлечение {}'.format(self.name, self.fullness, self.health,
                                                                       self.entertainment)
+
     def eat(self):
         if self.home.cat_food >= 20:
             print(Fore.YELLOW + '{} поел'.format(self.name))
@@ -43,18 +47,22 @@ class Cat:
             self.entertainment -= 10
         else:
             print(Fore.RED + '{} нет еды, ничего не делает'.format(self.name))
+            self.fullness-=10
+            self.health-=10
 
     def sleep(self):
         print(Fore.GREEN + '{} поспал'.format(self.name))
         self.health += 30
         self.entertainment -= 10
         self.fullness -= 10
+
     def tearing_wallpaper(self):
         print(Fore.CYAN + '{} дерет обои'.format(self.name))
         self.entertainment += 30
         self.fullness -= 10
-        self.man.nervous_system -= 20
+        self.man.nervous_system -= 10
         self.home.cleanlinesss -= 10
+
     def act(self):
         if (self.fullness <= 0 or self.health <= 0 or self.entertainment <= 0):
             print(Fore.RED + '{} откинул копыта'.format(self.name))
@@ -91,12 +99,14 @@ class Man:
             self.home.man_food -= 10
         else:
             print(Fore.RED + '{} нет еды, голодаед'.format(self.name))
+            self.fullness-=10
+            self.nervous_system-=10
 
     def work(self):
         print(Fore.RESET + '{} сходил на работу'.format(self.name))
         self.home.money += 150
         self.fullness -= 10
-        self.nervous_system -=10
+        self.nervous_system -= 10
 
     def watch_MTV(self):
         print(Fore.LIGHTBLUE_EX + '{} смотрел MTV целый день'.format(self.name))
@@ -108,8 +118,8 @@ class Man:
             print(Fore.MAGENTA + '{} сходил в магазин за едой'.format(self.name))
             self.home.money -= 50
             self.nervous_system += 20
-            self.home.man_food += 50
-            self.home.cat_food += 50
+            self.home.man_food += 80
+            self.home.cat_food += 80
         else:
             print(Fore.RED + '{} деньги кончились!'.format(self.name))
 
@@ -118,37 +128,39 @@ class Man:
         self.fullness -= 10
         print(Fore.CYAN + '{} Вьехал в дом'.format(self.name))
 
-    def pick_up_a_cat(self,cat,home):
-        self.cat=cat
-        self.cat.home=home
-        self.cat.man=self
-        self.fullness -=10
-        print(Fore.CYAN+'{} Подобрал кота {} в дом {}'.format(self.name, self.cat, self.home))
+    def pick_up_a_cat(self, cat, home):
+        self.cat = cat
+        self.cat.home = home
+        self.cat.man = self
+        self.fullness -= 10
+        print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом'.format(self.name, self.cat.name, self.home))
+
     def clean_home(self):
-        self.home.cleanlinesss += 20
+        self.home.cleanlinesss += 100
         self.fullness -= 10
         self.nervous_system -= 10
-        print(Fore.MAGENTA+'{} убирается в доме'.format(self.name))
+        print(Fore.MAGENTA + '{} убирается в доме'.format(self.name))
+
     def caress_cat(self):
-        self.nervous_system += 50
+        self.nervous_system += 100
         self.fullness -= 10
-        print(Fore.LIGHTBLUE_EX+'{} гладит кошку'.format(self.name))
+        print(Fore.LIGHTBLUE_EX + '{} гладит кошку'.format(self.name))
 
     def act1(self):
         dice1 = randint(1, 6)
-        if self.fullness <= 0:
+        if self.fullness <= 0 or self.nervous_system<=0:
             print(Fore.RED + '{} умер...'.format(self.name))
             return
         elif self.fullness < 20:
             self.eat()
-        elif (self.home.man_food < 30 or self.home.cat_food<30):
+        elif self.nervous_system < 30:
+            self.caress_cat()
+        elif (self.home.man_food < 30 or self.home.cat_food < 30):
             self.shopping()
         elif self.home.money < 100:
             self.work()
-        elif self.home.cleanlinesss <30:
+        elif self.home.cleanlinesss < 30:
             self.clean_home()
-        elif self.nervous_system < 30:
-            self.caress_cat()
         elif dice1 == 1:
             self.work()
         elif dice1 == 2:
@@ -170,19 +182,21 @@ class Home:
 
 
 my_sweet_home = Home()
-busya=Cat(name='Буся')
-filippo=Man(name='Филлиппо')
+cats=[Cat(name='Мурзик'),Cat(name='Буся')]
+# busya = Cat(name='Буся')
+filippo = Man(name='Филлиппо')
 filippo.go_to_the_home(home=my_sweet_home)
-filippo.pick_up_a_cat(cat=busya,home=my_sweet_home)
-
-
+for cat in cats:
+    filippo.pick_up_a_cat(cat=cat,home=my_sweet_home)
 for day in range(1, 365):
     print('================ день {} =================='.format(day))
     filippo.act1()
-    busya.act()
+    for cat in cats:
+        cat.act()
     print('---------------- в конце дня --------------')
     print(filippo)
-    print(busya)
+    for cat in cats:
+        print(cat)
     print(my_sweet_home)
 
 # Усложненное задание (делать по желанию)
