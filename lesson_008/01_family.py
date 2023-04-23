@@ -46,6 +46,7 @@ class House:
     def __init__(self):
         self.money = 100
         self.man_food = 50
+        self.cat_food = 30
         self.dirt = 0
 
     def __str__(self):
@@ -58,6 +59,7 @@ class Human:
         self.satiety = 30
         self.happiness = 100
         self.house = None
+        self.cat = None
 
     def __str__(self):
         return 'У {} сытость :{},уровень счастья : {}'.format(self.name, self.satiety, self.happiness)
@@ -78,6 +80,12 @@ class Human:
     def go_to_house(self, house):
         self.house = house
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
+    def pick_up_a_cat(self,cat,home):
+        self.cat=cat
+        self.house=house
+        self.cat.man = self
+        self.satiety -= 10
+        print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом'.format(self.name, self.cat.name, self.house))
 
     def act(self):
         if (self.satiety <= 0 or self.happiness <= 0):
@@ -191,7 +199,23 @@ class Husband(Human):
             self.work()
         else:
             self.gaming()
+class Cat:
 
+    def __init__(self):
+        pass
+
+
+
+    def eat(self):
+        pass
+
+    def sleep(self):
+        pass
+
+    def soil(self):
+        pass
+    def act(self):
+        pass
 
 house = House()
 anatoly = Husband(name='Анатолий')
@@ -240,22 +264,7 @@ print('спрячем изменения новый девелоп')
 # Если кот дерет обои, то грязи становится больше на 5 пунктов
 
 
-# class Cat:
-#
-#     def __init__(self):
-#         pass
-#
-#     def act(self):
-#         pass
-#
-#     def eat(self):
-#         pass
-#
-#     def sleep(self):
-#         pass
-#
-#     def soil(self):
-#         pass
+
 
 
 ######################################################## Часть вторая бис
