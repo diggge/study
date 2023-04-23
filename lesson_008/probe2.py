@@ -21,23 +21,3 @@
 # Степень сытости не должна падать ниже 0, иначе кот умрет от голода.
 #
 # Если кот дерет обои, то грязи становится больше на 5 пунктов
-
-def __init__(self, name):
-    self.name = name
-    self.satiety = 30
-    self.happiness = 100
-    self.house = None
-    self.cat = None
-
-    def eat(self):
-        if self.house.man_food <= 0:
-            self.satiety -= 10
-            print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
-        elif 0 < self.house.man_food < 30:
-            self.satiety += self.house.man_food
-            self.house.man_food = 0
-            print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
-        else:
-            self.satiety += 30
-            self.house.man_food -= 30
-            print(Fore.CYAN + '{} поел'.format(self.name))

@@ -80,6 +80,12 @@ class Human:
     def go_to_house(self, house):
         self.house = house
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
+    def pick_up_a_cat(self,cat,home):
+        self.cat=cat
+        self.house=house
+        self.cat.man = self
+        self.satiety -= 10
+        print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом'.format(self.name, self.cat.name, self.house))
     def pick_up_a_cat(self,cat,house):
         self.cat = cat
         self.cat.house = house
@@ -255,7 +261,23 @@ class Cat:
         else:
             self.sleep()
 
+class Cat:
 
+    def __init__(self):
+        pass
+
+
+
+    def eat(self):
+        pass
+
+    def sleep(self):
+        pass
+
+    def soil(self):
+        pass
+    def act(self):
+        pass
 
 house = House()
 anatoly = Husband(name='Анатолий')
