@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-from termcolor import cprint
+from colorama import Fore
 from random import randint
 
 ######################################################## Часть первая
@@ -69,6 +68,7 @@ class Human:
             print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
         elif 0 < self.house.man_food < 30:
             self.satiety += self.house.man_food
+            self.house.man_food = 0
             print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
         else:
             self.satiety += 30
@@ -80,12 +80,10 @@ class Human:
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
 
     def act(self):
-
         if (self.satiety <= 0 or self.happiness <= 0):
             print(Fore.RED + '{} вышел из игры'.format(self.name))
             return
-        if 0 < self.satiety <= 31:
-            self.eat()
+
 
 class Wife(Human):
     def __init__(self, name):
@@ -132,9 +130,14 @@ class Wife(Human):
         print(Fore.LIGHTWHITE_EX + '{} согласилась выйти замуж за {}'.format(self.name, self.husband.name))
 
     def act(self):
-        super().act()
+
         what_to_do = randint(1, 6)
-        if self.house.dirt > 80:
+        if (self.satiety <= 0 or self.happiness <= 0):
+            print(Fore.RED + '{} вышел из игры'.format(self.name))
+            return
+        if 0 < self.satiety <= 30:
+            self.eat()
+        elif self.house.dirt > 80:
             self.clean_house()
         elif self.house.money > 500:
             self.buy_fur_coat()
@@ -170,9 +173,13 @@ class Husband(Human):
         self.wife = wife
         print(Fore.LIGHTWHITE_EX + '{} согласился взять в жены {}'.format(self.name, self.wife.name))
     def act(self):
-        super().act()
         what_to_do = randint(1, 6)
-        if self.happiness < 40:
+        if (self.satiety <= 0 or self.happiness <= 0):
+            print(Fore.RED + '{} вышел из игры'.format(self.name))
+            return
+        if 0 < self.satiety <= 30:
+            self.eat()
+        elif self.happiness < 40:
             self.gaming()
         elif self.house.money < 100:
             self.work()
