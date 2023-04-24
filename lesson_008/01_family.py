@@ -82,7 +82,7 @@ class Human:
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
     def pick_up_a_cat(self,cat,house):
         self.cat = cat
-        self.house = house
+        self.cat.house = house
         self.cat.human = self
         self.satiety -= 10
         print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом {}'.format(self.name, self.cat.name, self.house))
@@ -109,17 +109,14 @@ class Wife(Human):
         print(Fore.LIGHTBLUE_EX + '{} сходила в магазин за едой'.format(self.name))
         self.happiness += 10
         self.satiety -= 10
-        if 0 <= self.house.money <= 110:
-            self.house.man_food += (self.house.money-10)
-            self.house.cat_food += 10
         if 0 <= self.house.money <= 120:
             self.house.man_food += (self.house.money-10)
             self.house.cat_food += 20
             self.house.money = 0
         else:
             self.house.man_food += 100
-            self.house.cat_food += 10
-            self.house.money -= 110
+            self.house.cat_food += 20
+            self.house.money -= 120
 
     def buy_fur_coat(self):
         print(Fore.LIGHTRED_EX + '{} купила себе шубу'.format(self.name))
@@ -221,56 +218,9 @@ class Cat:
         self.human = None
     def __str__(self):
         return 'У {} сытость :{},уровень счастья : {}'.format(self.name, self.satiety, self.happiness)
-
-    def __str__(self):
-        return 'У {} сытость :{},уровень счастья : {}'.format(self.name, self.satiety, self.happiness)
     def eat(self):
         if self.house.cat_food <= 0:
             self.satiety -= 10
-            print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
-        elif 0 < self.house.cat_food < 5:
-            self.satiety += 2*self.house.cat_food
-            self.house.cat_food = 0
-            print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
-        else:
-            self.satiety += 20
-            self.house.cat_food -= 10
-            print(Fore.LIGHTBLUE_EX+ '{} поел'.format(self.name))
-
-    def sleep(self):
-        self.satiety -=10
-        self.happiness += 10
-        print(Fore.LIGHTBLUE_EX + '{} весь день спал'.format(self.name))
-
-    def soil(self):
-        self.human.happiness -= 20
-        self.happiness += 100
-        self.house.dirt += 10
-        print(Fore.LIGHTBLUE_EX + '{} весь день дерет обои'.format(self.name))
-    def act(self):
-        what_to_do = randint(1, 2)
-        if (self.satiety <= 0 or self.happiness <= 0):
-            print(Fore.RED + '{} вышел из игры'.format(self.name))
-            return
-        elif self.satiety <= 5:
-            self.eat()
-        elif what_to_do == 1:
-            self.eat()
-        elif what_to_do == 2:
-            self.soil()
-        else:
-            self.sleep()
-
-class Cat:
-
-    def __init__(self):
-        pass
-
-
-
-    def eat(self):
-        if self.house.cat_food <= 0:
-            self.satiety -=0
             print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
         elif 0 < self.house.cat_food < 5:
             self.satiety += 2*self.house.cat_food
@@ -287,9 +237,10 @@ class Cat:
         print(Fore.LIGHTBLUE_EX + '{} весь день спал'.format(self.name))
 
     def soil(self):
-        self.human.happiness -= 100
+        self.human.happiness -= 20
         self.happiness += 100
-        self.house.dirt += 5
+        self.house.dirt += 10
+        print(Fore.LIGHTBLUE_EX + '{} весь день дерет обои'.format(self.name))
     def act(self):
         what_to_do = randint(1, 2)
         if (self.satiety <= 0 or self.happiness <= 0):
