@@ -50,7 +50,7 @@ class House:
         self.dirt = 0
 
     def __str__(self):
-        return ' В доме еды осталось: {}, денег осталось: {}, степень загрязности дома: {}'.format(self.man_food,
+        return ' В доме еды осталось: {}, еды для кошки осталось: {}, денег осталось: {}, степень загрязности дома: {}'.format(self.man_food,self.cat_food,
                                                                                                    self.money,
                                                                                                    self.dirt)
 class Human:
@@ -82,7 +82,7 @@ class Human:
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
     def pick_up_a_cat(self,cat,house):
         self.cat = cat
-        self.house = house
+        self.cat.house = house
         self.cat.human = self
         self.satiety -= 10
         print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом {}'.format(self.name, self.cat.name, self.house))
@@ -109,21 +109,21 @@ class Wife(Human):
         print(Fore.LIGHTBLUE_EX + '{} сходила в магазин за едой'.format(self.name))
         self.happiness += 10
         self.satiety -= 10
-        if 0 <= self.house.money <= 110:
+        if 0 <= self.house.money <= 120:
             self.house.man_food += (self.house.money-10)
-            self.house.cat_food += 10
+            self.house.cat_food += 20
             self.house.money = 0
         else:
             self.house.man_food += 100
-            self.house.cat_food += 10
-            self.house.money -= 110
+            self.house.cat_food += 20
+            self.house.money -= 120
 
     def buy_fur_coat(self):
         print(Fore.LIGHTRED_EX + '{} купила себе шубу'.format(self.name))
         self.happiness += 60
         self.satiety -= 10
         self.house.money -= 350
-        self.husband.happiness -= 100
+        self.husband.happiness -= 30
 
     def clean_house(self):
         print(Fore.LIGHTMAGENTA_EX + '{} убирается в доме '.format(self.name))
@@ -155,7 +155,7 @@ class Wife(Human):
             self.clean_house()
         elif self.house.money > 500:
             self.buy_fur_coat()
-        elif self.house.man_food < 70:
+        elif (self.house.man_food < 50 or self.house.cat_food < 10):
             self.shopping()
         elif what_to_do == 1:
             self.make_up()
@@ -182,7 +182,7 @@ class Husband(Human):
         self.satiety -= 10
 
     def gaming(self):
-        print(Fore.LIGHTGREEN_EX + '{} сидел играл весь день Fortnite'.format(self.name))
+        print(Fore.LIGHTGREEN_EX + '{} сидел играл весь день'.format(self.name))
         self.satiety -= 10
         self.happiness += 20
     def create_family(self, wife):
@@ -195,7 +195,7 @@ class Husband(Human):
             return
         if 0 < self.satiety <= 30:
             self.eat()
-        elif self.happiness < 40:
+        elif self.happiness < 70:
             self.gaming()
         elif self.house.money < 100:
             self.work()
@@ -209,70 +209,26 @@ class Husband(Human):
             self.pet_the_cat()
         else:
             self.gaming()
-class Child(Human):
-
-    def __init__(self, name):
-        super().__init__(name=name)
-        self.mother=evgeniya
-        self.father= anatoly
-        self.fun = 50
-    def __str__(self):
-        return super().__str__()+ ' уровень развлечения: {}'.format(self.fun)
-
-    def eat(self):
-
-        if self.house.man_food <= 0:
-            self.satiety -= 10
-            print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
-        elif 0 < self.house.man_food <= 20:
-            self.satiety += self.house.man_food
-            self.house.man_food = 0
-            print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
-        else:
-            self.satiety += 20
-            self.house.man_food -= 20
-            print(Fore.CYAN + '{} поел'.format(self.name))
-    def gaming(self):
-        print(Fore.LIGHTBLUE_EX + '{} весть день играла Roblox'.format(self.name))
-        self.fun +=20
-        self.satiety -=10
-    def sleep(self):
-        print(Fore.LIGHTWHITE_EX + '{} весь день спала'.format(self.name))
-        self.satiety -= 10
-    def act(self):
-
-        if (self.satiety <= 0 or self.happiness <= 0):
-            print(Fore.RED + '{} вышел из игры'.format(self.name))
-            return
-        elif 0 <= self.satiety <= 10:
-            self.eat()
-        elif self.fun <= 0:
-            self.happiness -=10
-        elif self.fun <=20:
-            self.gaming()
-
-        else:
-            self.sleep()
 class Cat:
     def __init__(self,name):
-        self.name=name
+        self.name = name
         self.satiety =30
-        self.happiness = 1000
+        self.happiness = 100
         self.house = None
         self.human = None
     def __str__(self):
         return 'У {} сытость :{},уровень счастья : {}'.format(self.name, self.satiety, self.happiness)
     def eat(self):
         if self.house.cat_food <= 0:
-            self.satiety -=0
+            self.satiety -= 10
             print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
         elif 0 < self.house.cat_food < 5:
             self.satiety += 2*self.house.cat_food
             self.house.cat_food = 0
             print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
         else:
-            self.satiety +=20
-            self.house.cat_food = 10
+            self.satiety += 20
+            self.house.cat_food -= 10
             print(Fore.LIGHTBLUE_EX+ '{} поел'.format(self.name))
 
     def sleep(self):
@@ -281,9 +237,10 @@ class Cat:
         print(Fore.LIGHTBLUE_EX + '{} весь день спал'.format(self.name))
 
     def soil(self):
-        self.human.happiness -= 100
+        self.human.happiness -= 20
         self.happiness += 100
-        self.house.dirt += 5
+        self.house.dirt += 10
+        print(Fore.LIGHTBLUE_EX + '{} весь день дерет обои'.format(self.name))
     def act(self):
         what_to_do = randint(1, 2)
         if (self.satiety <= 0 or self.happiness <= 0):
@@ -303,24 +260,20 @@ class Cat:
 house = House()
 anatoly = Husband(name='Анатолий')
 evgeniya = Wife(name='Евгения')
-diana = Child(name='Диана')
 busya= Cat(name='Буся')
 print(house)
 evgeniya.create_family(husband=anatoly)
 anatoly.create_family(wife=evgeniya)
-diana.go_to_house(house)
 evgeniya.go_to_house(house)
 anatoly.go_to_house(house)
-evgeniya.pick_up_a_cat(cat=busya,house=house)
-anatoly.pick_up_a_cat(cat=busya,house=house)
+evgeniya.pick_up_a_cat(cat=busya, house=house)
+anatoly.pick_up_a_cat(cat=busya, house=house)
 print(house)
 
 for day in range(365):
     print(Fore.GREEN + '================== День {} =================='.format(day))
     print(house)
     house.dirt += 5
-    diana.fun -=5
-    diana.act()
     anatoly.act()
     evgeniya.act()
     busya.act()
