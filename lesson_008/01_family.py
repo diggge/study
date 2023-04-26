@@ -141,7 +141,7 @@ class Wife(Human):
             self.clean_house()
         elif self.house.money > 500:
             self.buy_fur_coat()
-        elif self.house.man_food < 50:
+        elif self.house.man_food < 70:
             self.shopping()
         elif what_to_do == 1:
             self.make_up()
@@ -166,7 +166,7 @@ class Husband(Human):
         self.satiety -= 10
 
     def gaming(self):
-        print(Fore.LIGHTGREEN_EX + '{} сидел играл весь день'.format(self.name))
+        print(Fore.LIGHTGREEN_EX + '{} сидел играл весь день Fortnite'.format(self.name))
         self.satiety -= 10
         self.happiness += 20
     def create_family(self, wife):
@@ -191,14 +191,60 @@ class Husband(Human):
             self.work()
         else:
             self.gaming()
+class Child(Human):
+
+    def __init__(self, name):
+        super().__init__(name=name)
+        self.mother=evgeniya
+        self.father= anatoly
+        self.fun = 50
+    def __str__(self):
+        return super().__str__()+ ' уровень развлечения: {}'.format(self.fun)
+
+    def eat(self):
+
+        if self.house.man_food <= 0:
+            self.satiety -= 10
+            print(Fore.RED + 'нет еды, {} голодает'.format(self.name))
+        elif 0 < self.house.man_food <= 20:
+            self.satiety += self.house.man_food
+            self.house.man_food = 0
+            print(Fore.LIGHTRED_EX + '{} съел остатки еды'.format(self.name))
+        else:
+            self.satiety += 20
+            self.house.man_food -= 20
+            print(Fore.CYAN + '{} поел'.format(self.name))
+    def gaming(self):
+        print(Fore.LIGHTBLUE_EX + '{} весть день играла Roblox'.format(self.name))
+        self.fun +=20
+        self.satiety -=10
+    def sleep(self):
+        print(Fore.LIGHTWHITE_EX + '{} весь день спала'.format(self.name))
+        self.satiety -= 10
+    def act(self):
+
+        if (self.satiety <= 0 or self.happiness <= 0):
+            print(Fore.RED + '{} вышел из игры'.format(self.name))
+            return
+        elif 0 <= self.satiety <= 10:
+            self.eat()
+        elif self.fun <= 0:
+            self.happiness -=10
+        elif self.fun <=20:
+            self.gaming()
+
+        else:
+            self.sleep()
 
 
 house = House()
 anatoly = Husband(name='Анатолий')
 evgeniya = Wife(name='Евгения')
+diana = Child(name='Диана')
 print(house)
 evgeniya.create_family(husband=anatoly)
 anatoly.create_family(wife=evgeniya)
+diana.go_to_house(house)
 evgeniya.go_to_house(house)
 anatoly.go_to_house(house)
 print(house)
@@ -207,8 +253,11 @@ for day in range(365):
     print(Fore.GREEN + '================== День {} =================='.format(day))
     print(house)
     house.dirt += 5
+    diana.fun -=5
+    diana.act()
     anatoly.act()
     evgeniya.act()
+    print(diana)
     print(anatoly)
     print(evgeniya)
     print(house)
