@@ -2,8 +2,6 @@
 from colorama import Fore
 from random import randint
 
-print('Мама+папа+дочка+буся')
-
 
 ######################################################## Часть первая
 #
@@ -53,11 +51,8 @@ class House:
         self.dirt = 0
 
 
-def __str__(self):
-    return ' В доме еды осталось: {},еды для кошки осталось: {}, денег осталось: {}, степень загрязности дома: {}'.format(
-        self.man_food,
-        self.money,
-        self.dirt)
+    def __str__(self):
+        return 'В доме еды осталось: {},еды для кошки осталось: {}, денег осталось: {}, степень загрязности дома: {}'.format(self.man_food,self.cat_food,self.money,self.dirt)
 
 
 class Human:
@@ -68,10 +63,8 @@ class Human:
         self.house = None
         self.cat = None
 
-
     def __str__(self):
         return 'У {} сытость :{},уровень счастья : {}'.format(self.name, self.satiety, self.happiness)
-
 
     def eat(self):
         if self.house.man_food <= 0:
@@ -86,11 +79,9 @@ class Human:
             self.house.man_food -= 30
             print(Fore.CYAN + '{} поел'.format(self.name))
 
-
     def go_to_house(self, house):
         self.house = house
         print(Fore.BLUE + '{} въехал домой'.format(self.name))
-
 
     def pick_up_a_cat(self, cat, house):
         self.cat = cat
@@ -99,12 +90,10 @@ class Human:
         self.satiety -= 10
         print(Fore.LIGHTMAGENTA_EX + '{} Подобрал кота {} в дом {}'.format(self.name, self.cat.name, self.house))
 
-
     def pet_the_cat(self):
         self.happiness += 10
         self.cat.happiness += 10
         print(Fore.LIGHTMAGENTA_EX + '{} Гладит кота {} '.format(self.name, self.cat.name))
-
 
     def act(self):
         if (self.satiety <= 0 or self.happiness <= 0):
@@ -133,7 +122,6 @@ class Wife(Human):
             self.house.cat_food += 20
             self.house.money -= 120
 
-
     def buy_fur_coat(self):
 
         print(Fore.LIGHTRED_EX + '{} купила себе шубу'.format(self.name))
@@ -141,7 +129,6 @@ class Wife(Human):
         self.satiety -= 10
         self.house.money -= 350
         self.husband.happiness -= 30
-
 
     def clean_house(self):
         print(Fore.LIGHTMAGENTA_EX + '{} убирается в доме '.format(self.name))
@@ -153,17 +140,14 @@ class Wife(Human):
         else:
             self.house.dirt -= 100
 
-
     def make_up(self):
         print(Fore.LIGHTGREEN_EX + '{} сидела красилась весь день'.format(self.name))
         self.satiety -= 10
         self.happiness += 10
 
-
     def create_family(self, husband):
         self.husband = husband
         print(Fore.LIGHTWHITE_EX + '{} согласилась выйти замуж за {}'.format(self.name, self.husband.name))
-
 
     def act(self):
         what_to_do = randint(1, 6)
@@ -364,11 +348,11 @@ for day in range(365):
     anatoly.act()
     evgeniya.act()
     busya.act()
-print(diana)
-print(anatoly)
-print(evgeniya)
-print(busya)
-print(house)
+    print(diana)
+    print(anatoly)
+    print(evgeniya)
+    print(busya)
+    print(house)
 
 # TODO после реализации первой части - отдать на проверку учителю
 
