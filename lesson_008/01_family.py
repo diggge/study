@@ -46,7 +46,7 @@ class House:
 
     def __init__(self):
         self.money = 100
-        self.man_food = 50
+        self.man_food = 90
         self.cat_food = 30
         self.dirt = 0
 
@@ -114,7 +114,7 @@ class Wife(Human):
         self.happiness += 10
         self.satiety -= 10
         if 0 <= self.house.money <= 120:
-            self.house.man_food += (self.house.money - 10)
+            self.house.man_food += (self.house.money - 20)
             self.house.cat_food += 20
             self.house.money = 0
         else:
@@ -154,14 +154,16 @@ class Wife(Human):
         if (self.satiety <= 0 or self.happiness <= 0):
             print(Fore.RED + '{} вышел из игры'.format(self.name))
             return
-        if 0 < self.satiety <= 30:
+        if 0 < self.satiety <= 40:
             self.eat()
+        elif (self.house.man_food < 70 or self.house.cat_food < 20):
+            self.shopping()
         elif self.house.dirt > 80:
             self.clean_house()
+
         elif self.house.money > 500:
             self.buy_fur_coat()
-        elif (self.house.man_food < 50 or self.house.cat_food < 10):
-            self.shopping()
+
         elif what_to_do == 1:
             self.make_up()
         elif what_to_do == 2:
@@ -190,7 +192,7 @@ class Husband(Human):
     def gaming(self):
         print(Fore.LIGHTGREEN_EX + '{} сидел играл весь день Fortnite'.format(self.name))
         self.satiety -= 10
-        self.happiness += 20
+        self.happiness += 30
 
     def create_family(self, wife):
         self.wife = wife
@@ -203,10 +205,10 @@ class Husband(Human):
             return
         if 0 < self.satiety <= 30:
             self.eat()
-        elif self.happiness < 70:
-            self.gaming()
-        elif self.house.money < 100:
+        elif self.house.money < 150:
             self.work()
+        elif self.happiness < 80:
+            self.gaming()
         elif what_to_do == 1:
             self.work()
         elif what_to_do == 2:
@@ -259,11 +261,11 @@ class Child(Human):
         if (self.satiety <= 0 or self.happiness <= 0):
             print(Fore.RED + '{} вышел из игры'.format(self.name))
             return
-        elif 0 <= self.satiety <= 10:
+        elif 0 <= self.satiety <= 20:
             self.eat()
         elif self.fun <= 0:
             self.happiness -= 10
-        elif self.fun <= 20:
+        elif self.fun <= 30:
             self.gaming()
 
         else:
