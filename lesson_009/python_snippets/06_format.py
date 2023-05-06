@@ -31,7 +31,7 @@ for x in range(1, 11):
 # вывод дробного числа с заданной точностью
 # :8.4f - 8 знаков всего, 4 знака после запятой, дробное число
 import math
-print('Вывод числа "{0:5f}" '.format(math.pi))
+print('Вывод числа "{0:14f}" '.format(math.pi))
 print('Вывод числа "{0:5.2f}" '.format(math.pi))
 print('Вывод числа "{0:8.2f}" '.format(math.pi))
 
@@ -100,7 +100,7 @@ f1()
 
 file_name = 'out.txt'
 var_1 = 42
-with open(file_name, mode='w') as file:
+with open(file_name, mode='w',encoding='utf8') as file:
     file.write('Вывод числа %d' % (34, ))
     file.write('\n')
     file.write('Мы — те {}, что говорят "{}!"'.format('рыцари', 'Ха'))
