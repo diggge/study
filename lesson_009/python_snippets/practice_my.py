@@ -9,7 +9,7 @@ from pprint import pprint
 from random import randint
 
 class Chatterer:
-    analize_count = 5
+    analize_count = 6
     def __init__(self,file_name):
         self.file_name = file_name
         self.stat = {}

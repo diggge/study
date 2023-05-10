@@ -11,7 +11,7 @@ from random import randint
 
 
 class Chatterer:
-    analize_count = 4
+    analize_count = 6
 
     def __init__(self, file_name):
         self.file_name = file_name
@@ -54,7 +54,6 @@ class Chatterer:
                 self.stat_for_generate[sequence].sort(reverse=True)
 
     def chat(self, N, out_file_name=None):
-        N = 1000
         printed = 0
         if out_file_name is not None:
             file = open(out_file_name, 'w', encoding='utf8')
@@ -95,4 +94,4 @@ class Chatterer:
 chatterer = Chatterer(file_name='voyna-i-mir.txt.zip')
 chatterer.collect()
 chatterer.prepare()
-chatterer.chat(N=10000, out_file_name='out.txt')
+chatterer.chat(N=1000, out_file_name='out.txt')

@@ -61,7 +61,7 @@ pprint(file.writable())  # файл можно писать
 pprint(file.seekable())  # файл поддерживает произвольный доступ
 
 pprint(file.truncate(size=None))
-pprint(file.flush())  # обычно файл буферезирован, флаш записвыает весь буфер на диск
+pprint(file.flush())  # обычно файл буферезирован, флаш записывает весь буфер на диск
 
 # Файлы по сути являются потоками байтов - streams. https://docs.python.org/3/library/io.html
 
