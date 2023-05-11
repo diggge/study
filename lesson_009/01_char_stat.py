@@ -55,7 +55,10 @@ class Statistika:
             print('{line0:^22} '.format(line0='+-----------+-----------+'))
             print('|{first_line1:^10} | {first_line2:^10}|'.format(first_line1='Буква',first_line2='Частота'))
             print('{line2:^22} '.format(line2='+-----------+-----------+'))
-            for alphabet,quantity in self.stat.items():
+            # stat2=dict(sorted(self.stat))
+            # print(self.stat)
+            print(sorted(self.stat.items()))
+            for alphabet,quantity in sorted(self.stat.items()):
                 print('|{alphabet:^10} | {quantity:^10}|'.format(alphabet=alphabet,quantity=quantity))
             print('{line999:^22} '.format(line999='+-----------+-----------+'))
             print('|{line1000:^10} | {summa:^10}|'.format(line1000='Итого', summa=sum(self.stat.values())))
