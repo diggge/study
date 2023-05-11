@@ -26,3 +26,23 @@
 #  - по месяцу
 #  - по году
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
+class Log_parser:
+    def __init__(self, file_name, parser_log):
+        self.file_name = file_name
+        self.parser_log = parser_log
+        self.final_log={}
+    def parser(self):
+        with open(self.file_name,'r', encoding='utf8') as file:
+            with open(self.parser_log,'w', encoding='utf8') as parser_file:
+                for line in file:
+                    if line[-4:-1] == 'NOK':
+                        if line[:14]+']' in self.final_log:
+                            self.final_log[line[:14]+']'] += 1
+                        else:
+                            self.final_log[line[:14]+']'] = 1
+                for date,quantity in self.final_log.items():
+                    print(date,quantity)
+                    parser_file.write(f'{date}:{quantity}\n'.format(date=date,quantity=quantity))
+
+log_parser=Log_parser(file_name='events.txt', parser_log='parser_log.txt')
+log_parser.parser()
