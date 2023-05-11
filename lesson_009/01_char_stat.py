@@ -56,7 +56,7 @@ class Statistika:
             print('|{first_line1:^10} | {first_line2:^10}|'.format(first_line1='Буква',first_line2='Частота'))
             print('{line2:^22} '.format(line2='+-----------+-----------+'))
             # print(dict(sorted(self.stat.items(), key=lambda x: x[1])))
-            stat_sort= dict(sorted(self.stat.items(), key=lambda x: x[1]))
+            stat_sort= dict(sorted(self.stat.items(), reverse=True,key=lambda x: x[1]))
             for alphabet,quantity in stat_sort.items():
                 print('|{alphabet:^10} | {quantity:^10}|'.format(alphabet=alphabet,quantity=quantity))
             print('{line999:^22} '.format(line999='+-----------+-----------+'))
