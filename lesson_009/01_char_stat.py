@@ -26,9 +26,13 @@
 #  - по алфавиту по убыванию
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
 import zipfile
+from pprint import pprint
+
+
 class Statistika:
     def __init__(self,file_name):
         self.file_name = file_name
+        self.stat = {}
     def unzip(self):
         zfile=zipfile.ZipFile(self.file_name, 'r')
         for filename in zfile.namelist():
@@ -37,16 +41,28 @@ class Statistika:
     def collect(self):
         if self.file_name.endswith('.zip'):
             self.unzip()
-        self.sequence = ' ' * self.analize_count
+        # self.sequence = ' ' * self.analize_count
         with open(self.file_name,'r', encoding='cp1251') as file:
             for line in file:
-                print(line, end='')
-                self.collect_for_line(line=line[:-1])
-        def collect_for_line(self,line):
-            for char in line:
+                # print(line, end='')
+                for char in line:
+                    if char in line:
+                        if char in self.stat:
+                            self.stat[char] += 1
+                        else:
+                            if char.isalpha() is True:
+                                self.stat[char] = 1
+            print('{line0:^22} '.format(line0='+-----------+-----------+'))
+            print('|{first_line1:^10} | {first_line2:^10}|'.format(first_line1='Буква',first_line2='Частота'))
+            print('{line2:^22} '.format(line2='+-----------+-----------+'))
+            for alphabet,quantity in self.stat.items():
+                print('|{alphabet:^10} | {quantity:^10}|'.format(alphabet=alphabet,quantity=quantity))
+            print('{line999:^22} '.format(line999='+-----------+-----------+'))
+            print('|{line1000:^10} | {summa:^10}|'.format(line1000='Итого', summa=sum(self.stat.values())))
+            print('{linefinal:^22} '.format(linefinal='+-----------+-----------+'))
 
-
-
+# print('|{txt:^30}|'.format(txt='centered'))
+# # '           centered
 statistika=Statistika(file_name='python_snippets/voyna-i-mir.txt.zip')
 statistika.collect()
 
