@@ -50,13 +50,15 @@ class Statistika:
                         if char in self.stat:
                             self.stat[char] += 1
                         else:
-                            if char.isalpha() is True:
+                            if (char.isalpha() is True and ord(char)>128):
                                 self.stat[char] = 1
             print('{line0:^22} '.format(line0='+-----------+-----------+'))
             print('|{first_line1:^10} | {first_line2:^10}|'.format(first_line1='Буква',first_line2='Частота'))
             print('{line2:^22} '.format(line2='+-----------+-----------+'))
             # print(dict(sorted(self.stat.items(), key=lambda x: x[1])))
-            stat_sort= dict(sorted(self.stat.items(), reverse=True,key=lambda x: x[1]))
+            # sorted(self.stat.items()):
+            stat_sort= dict(sorted(self.stat.items(), reverse=False , key=lambda x: x[0]))
+            # для сортировки по алфавиту или по значениям, меняем x[0] или x[1], убывание или возрастание меняем reverse=false or true
             for alphabet,quantity in stat_sort.items():
                 print('|{alphabet:^10} | {quantity:^10}|'.format(alphabet=alphabet,quantity=quantity))
             print('{line999:^22} '.format(line999='+-----------+-----------+'))
