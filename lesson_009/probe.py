@@ -11,11 +11,10 @@ path_normalized=os.path.normpath(path)
 for dirpath, dirnames, filenames in os.walk(path_normalized):
     # print(dirpath, dirnames, filenames)
     for file in filenames:
-        secs=os.path.getmtime(dirpath+'\\'+file)
+        secs=os.path.getmtime(os.path.join(dirpath,file))
         file_time = time.gmtime(secs)
-
-        print(dirpath+'\\'+file,round(os.path.getsize(dirpath+'\\'+file)/1024,2), 'КБ', file_time)
-
+        print(os.path.join(dirpath,file),round(os.path.getsize(os.path.join(dirpath,file))/1024,2), 'КБ', file_time)
+        print(os.path.dirname(dirpath))
 
 # os.path.normpath(path)
 
