@@ -40,3 +40,29 @@ import os, time, shutil
 # Нужно обрабатывать zip-файл, содержащий фотографии, без предварительного извлечения файлов в папку.
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
+
+path='c:/users/user/study/lesson_009/icons'
+path_normalized=os.path.normpath(path)
+for dirpath, dirnames, filenames in os.walk(path_normalized):
+    # print(dirpath,dirnames,filenames)
+    for file in filenames:
+        secs = os.path.getmtime(os.path.join(dirpath, file))
+        # print(secs)
+        file_time = time.gmtime(secs)
+        check_dir = os.path.dirname(os.path.join(dirpath, file))
+        # print(os.path.dirname(os.path.join(dirpath, file)),'Существует ли папка?',os.path.exists(check_dir))
+                # final_path
+        final_path=f'c:/users/user/study/lesson_009/icons_by_year/{file_time[0]}/{file_time[1]}'
+        print(os.path.join(check_dir, file), os.path.join(final_path, file))
+        if os.path.exists(final_path) is True:
+            # print('True')
+            shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
+        else:
+            os.makedirs(final_path)
+            shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
+            # print('False')
+        # print(final_path)
+
+
+
+
