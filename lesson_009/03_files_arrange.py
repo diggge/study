@@ -40,6 +40,17 @@ import os, time, shutil
 # Нужно обрабатывать zip-файл, содержащий фотографии, без предварительного извлечения файлов в папку.
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
+class Sorting_files_date:
+    def __init__(self,source_dir,destination_dir):
+        self.source_dir=source_dir
+        self.destination_dir = destination_dir
+    def parser(self):
+        path_normalized=os.path.normpath(self.source_dir)
+        for dirpath, dirnames,filenames in os.walk(path_normalized):
+            for file in filenames:
+                secs = os.path.getmtime(os.path.join(dirpath, file)
+                file_time = time.gmtime(secs)
+                final_path=
 
 path='c:/users/user/study/lesson_009/icons'
 path_normalized=os.path.normpath(path)
