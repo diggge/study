@@ -44,36 +44,50 @@ class Sorting_files_date:
     def __init__(self,source_dir,destination_dir):
         self.source_dir=source_dir
         self.destination_dir = destination_dir
+        self.file_time={}
     def parser(self):
-        path_normalized=os.path.normpath(self.source_dir)
-        for dirpath, dirnames,filenames in os.walk(path_normalized):
-            for file in filenames:
-                secs = os.path.getmtime(os.path.join(dirpath, file)
-                file_time = time.gmtime(secs)
-                final_path=
-
-path='c:/users/user/study/lesson_009/icons'
-path_normalized=os.path.normpath(path)
-for dirpath, dirnames, filenames in os.walk(path_normalized):
-    # print(dirpath,dirnames,filenames)
-    for file in filenames:
-        secs = os.path.getmtime(os.path.join(dirpath, file))
-        # print(secs)
-        file_time = time.gmtime(secs)
-        check_dir = os.path.dirname(os.path.join(dirpath, file))
-        # print(os.path.dirname(os.path.join(dirpath, file)),'Существует ли папка?',os.path.exists(check_dir))
-                # final_path
-        final_path=f'c:/users/user/study/lesson_009/icons_by_year/{file_time[0]}/{file_time[1]}'
-        print(os.path.join(check_dir, file), os.path.join(final_path, file))
-        if os.path.exists(final_path) is True:
-            # print('True')
-            shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
+        self.path_normalized=os.path.normpath(self.source_dir)
+        for dirpath, dirnames, filenames in os.walk(self.path_normalized):
+            for self.file in filenames:
+                true_path_file=os.path.join(dirpath, self.file)
+                secs = os.path.getmtime(true_path_file)
+                self.check_dir = os.path.dirname(os.path.join(dirpath, self.file))
+                self.file_time = time.gmtime(secs)
+                self.final_path=f'{self.destination_dir}/{self.file_time[0]}/{self.file_time[1]}/{self.file_time[2]}'
+                print(os.path.join(self.check_dir,self.file), os.path.join(self.final_path),self.file)
+    def check_copy(self):
+        if os.path.exists(self.final_path) is True:
+            shutil.copy2(os.path.join(self.check_dir, self.file), os.path.join(self.final_path, self.file))
         else:
-            os.makedirs(final_path)
-            shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
-            # print('False')
-        # print(final_path)
+            os.makedirs(self.final_path)
+            shutil.copy2(os.path.join(self.check_dir, self.file),os.path.join(self.final_path, self.file))
+sorting_files_date=Sorting_files_date(source_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons',destination_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
+sorting_files_date.parser()
+sorting_files_date.check_copy()
 
+
+# path='c:/users/user/study/lesson_009/icons'
+# path_normalized=os.path.normpath(path)
+# for dirpath, dirnames, filenames in os.walk(path_normalized):
+#     # print(dirpath,dirnames,filenames)
+#     for file in filenames:
+#         secs = os.path.getmtime(os.path.join(dirpath, file))
+#         # print(secs)
+#         file_time = time.gmtime(secs)
+#         check_dir = os.path.dirname(os.path.join(dirpath, file))
+#         # print(os.path.dirname(os.path.join(dirpath, file)),'Существует ли папка?',os.path.exists(check_dir))
+#                 # final_path
+#         final_path=f'c:/users/user/study/lesson_009/icons_by_year/{file_time[0]}/{file_time[1]}'
+#         print(os.path.join(check_dir, file), os.path.join(final_path, file))
+#         if os.path.exists(final_path) is True:
+#             # print('True')
+#             shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
+#         else:
+#             os.makedirs(final_path)
+#             shutil.copy2(os.path.join(check_dir, file),os.path.join(final_path, file))
+#             # print('False')
+#         # print(final_path)
+#
 
 
 
