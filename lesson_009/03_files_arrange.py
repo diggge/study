@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
-import os, time, shutil
+import datetime
+import os, time, shutil,zipfile, datetime
 
 # Нужно написать скрипт для упорядочивания фотографий (вообще любых файлов)
 # Скрипт должен разложить файлы из одной папки по годам и месяцам в другую.
@@ -41,29 +41,39 @@ import os, time, shutil
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
 class Sorting_files_date:
-    def __init__(self,source_dir,destination_dir):
-        self.source_dir=source_dir
-        self.destination_dir = destination_dir
-        self.file_time={}
-    def parser(self):
-        self.path_normalized=os.path.normpath(self.source_dir)
-        for dirpath, dirnames, filenames in os.walk(self.path_normalized):
-            for self.file in filenames:
-                true_path_file=os.path.join(dirpath, self.file)
-                secs = os.path.getmtime(true_path_file)
-                self.check_dir = os.path.dirname(os.path.join(dirpath, self.file))
-                self.file_time = time.gmtime(secs)
-                self.final_path=f'{self.destination_dir}/{self.file_time[0]}/{self.file_time[1]}/{self.file_time[2]}'
-                print(os.path.join(self.check_dir,self.file), os.path.join(self.final_path),self.file)
-    def check_copy(self):
-        if os.path.exists(self.final_path) is True:
-            shutil.copy2(os.path.join(self.check_dir, self.file), os.path.join(self.final_path, self.file))
-        else:
-            os.makedirs(self.final_path)
-            shutil.copy2(os.path.join(self.check_dir, self.file),os.path.join(self.final_path, self.file))
-sorting_files_date=Sorting_files_date(source_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons',destination_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
-sorting_files_date.parser()
-sorting_files_date.check_copy()
+    def __init__(self,file_name):
+        # self.destination_dir = destination_dir
+        self.file_name = file_name
+        # self.file_time={}
+    def unzip(self):
+        with zipfile.ZipFile(self.file_name,'r') as zf:
+            for filename in zf.infolist():
+                date = datetime.datetime(*filename.date_time)
+                name = os.path.basename(filename.filename)
+                print(f"{name},{date.strftime('%H:%M %d.%m.%Y')}")
+sorting_files_date=Sorting_files_date(file_name='icons.zip')
+sorting_files_date.unzip()
+
+
+#     def parser(self):
+#         self.path_normalized=os.path.normpath(self.source_dir)
+#         for dirpath, dirnames, filenames in os.walk(self.path_normalized):
+#             for self.file in filenames:
+#                 true_path_file=os.path.join(dirpath, self.file)
+#                 secs = os.path.getmtime(true_path_file)
+#                 self.check_dir = os.path.dirname(os.path.join(dirpath, self.file))
+#                 file_time = time.gmtime(secs)
+#                 self.final_path=f'{self.destination_dir}/{file_time[0]}/{file_time[1]}/{file_time[2]}'
+#                 print(os.path.join(self.check_dir,self.file), os.path.join(self.final_path),self.file)
+#     def check_copy(self):
+#         if os.path.exists(self.final_path) is True:
+#             shutil.copy2(os.path.join(self.check_dir, self.file), os.path.join(self.final_path, self.file))
+#         else:
+#             os.makedirs(self.final_path)
+#             shutil.copy2(os.path.join(self.check_dir, self.file),os.path.join(self.final_path, self.file))
+# sorting_files_date=Sorting_files_date(source_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons',destination_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
+# sorting_files_date.parser()
+# sorting_files_date.check_copy()
 
 
 # path='c:/users/user/study/lesson_009/icons'
