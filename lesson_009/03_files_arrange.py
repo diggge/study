@@ -41,19 +41,31 @@ import os, time, shutil,zipfile, datetime
 # Основная функция должна брать параметром имя zip-файла и имя целевой папки.
 # Для этого пригодится шаблон проектирование "Шаблонный метод" см https://goo.gl/Vz4828
 class Sorting_files_date:
-    def __init__(self,file_name):
-        # self.destination_dir = destination_dir
+    def __init__(self,file_name,destination_dir):
+        self.destination_dir = destination_dir
         self.file_name = file_name
-        # self.file_time={}
     def unzip(self):
-        with zipfile.ZipFile(self.file_name,'r') as zf:
-            for filename in zf.infolist():
-                date = datetime.datetime(*filename.date_time)
-                name = os.path.basename(filename.filename)
-                print(f"{name},{date.strftime('%H:%M %d.%m.%Y')}")
-sorting_files_date=Sorting_files_date(file_name='icons.zip')
+        with zipfile.ZipFile(self.file_name,'r') as self.zf:
+            for file in self.zf.infolist():
+                date = datetime.datetime(*file.date_time)
+                name = os.path.basename(file.filename)
+                self.final_path = f"{self.destination_dir}/{date.strftime('%Y')}/{date.strftime('%m')}"
+                print(f"{name}, {self.final_path}, {date.strftime('%Y.%m')}",file)
+                if os.path.exists(self.final_path) is True:
+                     self.zf.extract(name, self.final_path)
+                else:
+                     os.makedirs(self.final_path)
+                     self.zf.extract(name, self.final_path)
+                # print(self.final_path)
+    # def check_extract(self):
+    #     if os.path.exists(self.final_path) is True:
+    #         self.zf.extract(self.file,self.final_path)
+    #     else:
+    #         os.makedirs(self.final_path)
+    #         self.zf.extract(self.file, self.final_path)
+sorting_files_date=Sorting_files_date(file_name='icons.zip',destination_dir='C:/Users/user/study/lesson_009/icons_by_year')
 sorting_files_date.unzip()
-
+# sorting_files_date.check_extract()
 
 #     def parser(self):
 #         self.path_normalized=os.path.normpath(self.source_dir)
