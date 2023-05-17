@@ -51,11 +51,27 @@ class Sorting_files_date:
                 name = os.path.basename(file.filename)
                 self.final_path = f"{self.destination_dir}/{date.strftime('%Y')}/{date.strftime('%m')}"
                 print(f"{name}, {self.final_path}, {date.strftime('%Y.%m')}",file)
+                #
+                if not name:
+                        continue
                 if os.path.exists(self.final_path) is True:
-                     self.zf.extract(name, self.final_path)
+                    source = self.zf.open(file)
+                    target = open(os.path.join(self.final_path,name),'wb')
+                    with source, target:
+                        shutil.copyfileobj(source,target)
                 else:
-                     os.makedirs(self.final_path)
-                     self.zf.extract(name, self.final_path)
+                    source = self.zf.open(file)
+                    target = open(os.path.join(self.final_path, name), 'wb')
+                    os.makedirs(self.final_path)
+                    with source, target:
+                        shutil.copyfileobj(source,target)
+
+
+                # if os.path.exists(self.final_path) is True:
+                #
+                # else:
+                #      os.makedirs(self.final_path)
+
                 # print(self.final_path)
     # def check_extract(self):
     #     if os.path.exists(self.final_path) is True:
@@ -63,7 +79,7 @@ class Sorting_files_date:
     #     else:
     #         os.makedirs(self.final_path)
     #         self.zf.extract(self.file, self.final_path)
-sorting_files_date=Sorting_files_date(file_name='icons.zip',destination_dir='C:/Users/user/study/lesson_009/icons_by_year')
+sorting_files_date=Sorting_files_date(file_name='icons.zip',destination_dir='c:/users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
 sorting_files_date.unzip()
 # sorting_files_date.check_extract()
 
@@ -110,6 +126,13 @@ sorting_files_date.unzip()
 #             # print('False')
 #         # print(final_path)
 #
-
-
+#С помощью метода is_dir() можно проверить, является ли элемент в архиве папкой:
+# from zipfile import ZipFile
+#
+# with ZipFile("metanit.zip", "r") as myzip:
+#     for item in myzip.infolist():
+#         if (item.is_dir()):
+#             print(f"Папка: {item.filename}")
+#         else:
+#             print(f"Файл: {item.filename}")
 
