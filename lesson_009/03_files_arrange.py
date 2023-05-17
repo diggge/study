@@ -46,25 +46,36 @@ class Sorting_files_date:
         self.file_name = file_name
     def unzip(self):
         with zipfile.ZipFile(self.file_name,'r') as self.zf:
-            for file in self.zf.infolist():
-                date = datetime.datetime(*file.date_time)
-                name = os.path.basename(file.filename)
-                self.final_path = f"{self.destination_dir}/{date.strftime('%Y')}/{date.strftime('%m')}"
-                print(f"{name}, {self.final_path}, {date.strftime('%Y.%m')}",file)
+            for member in self.zf.namelist():
+                filename= os.path.basename(member)
+                self.final_path = f"{self.destination_dir}"
+                source = self.zf.open(member)
+                target = open(os.path.join(self.final_path,filename), 'wb')
+                with source, target:
+                    shutil.copyfileobj(source, target)
+                # print(os.path.join(self.final_path, filename))
+
+
+            # for file in self.zf.infolist():
+            #     date = datetime.datetime(*file.date_time)
+            #     name = os.path.basename(file.filename)
+            #     self.final_path = f"{self.destination_dir}/{date.strftime('%Y')}/{date.strftime('%m')}"
+                # print(f"{name}, {self.final_path}, {date.strftime('%Y.%m')}",file)
                 #
-                if not name:
-                        continue
-                if os.path.exists(self.final_path) is True:
-                    source = self.zf.open(file)
-                    target = open(os.path.join(self.final_path,name),'wb')
-                    with source, target:
-                        shutil.copyfileobj(source,target)
-                else:
-                    source = self.zf.open(file)
-                    target = open(os.path.join(self.final_path, name), 'wb')
-                    os.makedirs(self.final_path)
-                    with source, target:
-                        shutil.copyfileobj(source,target)
+                # print(os.path.join(self.final_path, name))
+                # if not name:
+                #         continue
+                # if os.path.exists(self.final_path) is True:
+                #     source = self.zf.open(file)
+                #     target = open(os.path.join(self.final_path, name), 'wb')
+                #     with source, target:
+                #         shutil.copyfileobj(source,target)
+                # else:
+                #     source = self.zf.open(file)
+                #     target = open(os.path.join(self.final_path, name), 'wb')
+                #     os.makedirs(self.final_path)
+                #     with source, target:
+                #         shutil.copyfileobj(source,target)
 
 
                 # if os.path.exists(self.final_path) is True:
@@ -79,7 +90,7 @@ class Sorting_files_date:
     #     else:
     #         os.makedirs(self.final_path)
     #         self.zf.extract(self.file, self.final_path)
-sorting_files_date=Sorting_files_date(file_name='icons.zip',destination_dir='c:/users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
+sorting_files_date = Sorting_files_date(file_name='icons.zip',destination_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
 sorting_files_date.unzip()
 # sorting_files_date.check_extract()
 
