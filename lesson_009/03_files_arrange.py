@@ -46,15 +46,23 @@ class Sorting_files_date:
         self.file_name = file_name
     def unzip(self):
         with zipfile.ZipFile(self.file_name,'r') as self.zf:
-            for member in self.zf.namelist():
-                filename= os.path.basename(member)
-                self.final_path = f"{self.destination_dir}"
-                source = self.zf.open(member)
-                target = open(os.path.join(self.final_path,filename), 'wb')
-                with source, target:
-                    shutil.copyfileobj(source, target)
-                # print(os.path.join(self.final_path, filename))
-
+            for member in self.zf.infolist():
+                date = datetime.datetime(*member.date_time)
+                filename= os.path.basename(member.filename)
+                self.final_path = f"{self.destination_dir}/{date.strftime('%Y')}/{date.strftime('%m')}"
+                if not filename:
+                    continue
+                if os.path.exists(self.final_path) is True:
+                    source = self.zf.open(member)
+                    target = open(os.path.join(self.final_path, filename), 'wb')
+                    with source, target:
+                        shutil.copyfileobj(source,target)
+                else:
+                    os.makedirs(self.final_path)
+                    source = self.zf.open(member)
+                    target = open(os.path.join(self.final_path, filename), 'wb')
+                    with source, target:
+                        shutil.copyfileobj(source,target)
 
             # for file in self.zf.infolist():
             #     date = datetime.datetime(*file.date_time)
@@ -90,7 +98,7 @@ class Sorting_files_date:
     #     else:
     #         os.makedirs(self.final_path)
     #         self.zf.extract(self.file, self.final_path)
-sorting_files_date = Sorting_files_date(file_name='icons.zip',destination_dir='C:/Users/Admin/PycharmProjects/study/lesson_009/icons_by_year')
+sorting_files_date = Sorting_files_date(file_name='icons.zip',destination_dir='C:/Users/user/study/lesson_009/icons_by_year')
 sorting_files_date.unzip()
 # sorting_files_date.check_extract()
 
