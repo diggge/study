@@ -42,7 +42,7 @@ class Statistika:
         if self.file_name.endswith('.zip'):
             self.unzip()
         # self.sequence = ' ' * self.analize_count
-        with open(self.file_name,'r', encoding='cp1251') as fi  le:
+        with open(self.file_name,'r', encoding='cp1251') as file:
             for line in file:
                 # print(line, end='')
                 for char in line:

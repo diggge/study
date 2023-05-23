@@ -23,3 +23,21 @@
 # Вызов метода обернуть в try-except.
 
 # TODO здесь ваш код
+def sorting(line):
+    print(f'Обрабатываю строку {line}')
+    name, mail, age = line.split(' ')
+    age = int(age)
+    print(f'Имя = {name}, mail = {mail}, age = {age}')
+    print(f'Обрабатываю корректность имени {name}')
+    if name.isalpha() is True:
+        print(f'Данное имя {name} написано корректно')
+    else:
+        print(f'Данное имя {name} написано некорректно')
+    k=0
+    # for symbol in mail:
+
+
+
+with open('registrations.txt', 'r', encoding='utf8') as rs:
+    for line in rs:
+        sorting(line)
