@@ -62,7 +62,7 @@ while True:
     if total_karma <= ENLIGHTENMENT_CARMA_LEVEL:
         total_karma += one_day()
     else:
-        print("Мы достигли нужной кармы, выход из Для сурка")
+        print("Мы достигли нужной кармы, выход из дня сурка")
         break
 
 
