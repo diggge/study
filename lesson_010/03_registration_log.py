@@ -27,59 +27,55 @@ class NotNameError(Exception):
     print('Ошибка в имени')
 class NotEmailError(Exception):
     print('Ошибка в электронной почте')
-
-def sorting(line):
+def sorting(line,good_rs,bad_rs):
     check = 0
     print(f'Обрабатываю строку {line}',flush = True)
     try:
         name, mail, age = line.split(' ')
-        if (len(name)>=2 or len(mail)>=5 or len(age)>1):
-            # print('Присутсвуют все три поля')
-            check += 1
-        else:
-            # print('Присутствуют не все поля')
-            check -= 1
+        if (len(name)<2 or len(mail)<=5 or len(age)<2):
+            raise ValueError('Корректно не прописаны все три поля')
+        # else:
+        #     check += 1
         print(f'Имя = {name}, mail = {mail} , age = {age}')
-    # print(f'Обрабатываю корректность имени {name}')
-# - поле имени содержит НЕ только буквы: NotNameError (кастомное исключение)
-
         if name.isalpha() is False:
-            # print(f'Данное имя {name} написано корректно')
-            raise NotNameError
-        else:
-            # print(f'Данное имя {name} написано некорректно')
-            check += 1
-    # print(f'Обрабатываю корректность почты {mail}')
-        k1=0
-        k2=0
-        for symbol in mail:
-            # print(ord(symbol))
-            if ord(symbol) == 64:
-                k1 += 1
-            if ord(symbol) == 46:
-                k2 += 1
-        if (k1 !=1 or k2 != 1):
-            # print(f'Почта {mail} написано корректно')
-            raise NotEmailError
-        else:
-            # print(f'Почта {mail} написано некорректно')
-                check += 1
+            raise NotNameError('поле имени содержит НЕ только буквы')
+        # else:
+        #     check += 1
+        if mail.count('@') != 1 or mail[0] =='@' or mail.count('.') < 1 or mail.rfind('.')<mail.rfind('@'):
+            raise NotEmailError('поле Емейл прописана некорректно')
+        # else:
+        #     check += 1
 
-        if ((age.isdigit() is True) and (10 <= int(age) <=99)):
-            # print(f'Возраст {age} прописан корректно {age.isdigit()}')
-            check += 1
+        # k1=0
+        # k2=0
+        # for symbol in mail:
+        #     if ord(symbol) == 64:
+        #         k1 += 1
+        #     if ord(symbol) == 46:
+        #         k2 += 1
+        # if (k1 !=1 or k2 != 1):
+        #     raise NotEmailError('поле Емейл прописана некорректно')
+        # else:
+        #         check += 1
+        if ((age.isdigit() is False) or int(age) < 9 or int(age) > 99):
+            raise ValueError('поле Возраст прописан некорректно')
         else:
-            # print(f' Возраст {age} прописан некорректно {age.isdigit()}')
-            check -= 1
+            check += 1
     except ValueError as exc1:
-        print(f'Ошибка {exc1} в строке {line}')
-        return 1
+        # print(exc1.args[0])
+        if 'unpack' in exc1.args[0]:
+            print(f'Не прописаны все три значения в строке {line}')
+            bad_rs.write(line + '  Не прописаны все три значения в строке  \n')
+        # print(f'Ошибка {exc1} и параметры {exc1.args} в строке {line}')
+        if 'Корректно не прописаны все три поля' in exc1.args[0]:
+            print(f'Корректно не прописаны все три поля {line}')
+            bad_rs.write(line + '  :Корректно не прописаны все три поля  \n')
     except NotNameError:
         print(f'Ошибка в имени {name}')
-        return 1
+        bad_rs.write(line + '  :поле имени содержит НЕ только буквы \n')
     except NotEmailError:
         print(f'Ошибка в электронной почте {mail}')
-        return 1
+        bad_rs.write(line +f'  :поле емейл прописана некорректно\n')
     return check
 
 with open('registrations.txt', 'r', encoding='utf8') as rs:
@@ -87,13 +83,13 @@ with open('registrations.txt', 'r', encoding='utf8') as rs:
         with open('registrations_bad.log', 'w', encoding='utf8') as bad_rs:
             for line in rs:
                 line = line[:-1]
-                check = sorting(line)
+                check = sorting(line,good_rs,bad_rs)
                 line = line+'\n'
-                if check == 4:
+                if check == 1:
                     good_rs.write(line)
                     print(f'{line[:-1]} = Хорошая строка, записываю в registrations_good.log')
 
-                else:
-                    bad_rs.write(line)
-                    print(f'{line[:-1]} = Плохая строка , записываю в registrations_bad.log ')
+                # else:
+                #     bad_rs.write(line)
+                #     print(f'{line[:-1]} = Плохая строка , записываю в registrations_bad.log ')
 
