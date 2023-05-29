@@ -1,18 +1,13 @@
-# Еще один способ сделать функции на лету - создание обьекта, который можно вызывать
-class Multiplier:
+from collections import OrderedDict
 
-    def __init__(self, n):
-        self.n = n
-
-    def __call__(self, x):
-        # если есть такой метод у класса - то его обьект можно "вызывать" как функцию
-        return x * self.n
-
-
-my_numbers = [3, 1, 4, 1, 5, 9, 2, 6]
-by_100500 = Multiplier(n=100500)
-result = by_100500(x=42)
-print(result)
-
-result = map(by_100500, my_numbers)
-print(list(result))
+my_pets = OrderedDict()
+my_pets['собака'] = 'Жучка'
+my_pets['мышка'] = 'Норушка'
+my_pets['кошка'] = 'Мурка'
+my_pets['попугай'] = 'Кеша'
+my_pets['рыбка'] = 'Геннадий'
+my_pets['таракан'] = 'Виссегауд'
+my_pets['кролик'] = 'Савелий'
+print(my_pets)
+for k, v in my_pets.items():
+    print(k, v)
