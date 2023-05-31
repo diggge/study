@@ -1,13 +1,17 @@
-from collections import OrderedDict
+def get_multiplier_v2(n):
 
-my_pets = OrderedDict()
-my_pets['собака'] = 'Жучка'
-my_pets['мышка'] = 'Норушка'
-my_pets['кошка'] = 'Мурка'
-my_pets['попугай'] = 'Кеша'
-my_pets['рыбка'] = 'Геннадий'
-my_pets['таракан'] = 'Виссегауд'
-my_pets['кролик'] = 'Савелий'
-print(my_pets)
-for k, v in my_pets.items():
-    print(k, v)
+    def multiplier(x):
+        return x * n
+
+    return multiplier
+
+my_numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+by_5 = get_multiplier_v2(5)
+print(by_5(my_numbers))
+
+result = map(by_5, my_numbers)
+print(list(result))
+
+by_100 = get_multiplier_v2(100)
+result = map(by_100, my_numbers)
+print(list(result))

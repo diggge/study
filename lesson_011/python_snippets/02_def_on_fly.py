@@ -14,7 +14,6 @@ def get_multiplier_v1(n):
             return x * 3
     else:
         raise Exception('Я могу сделать умножители только на 2 или 3!')
-
     return multiplier
 
 
