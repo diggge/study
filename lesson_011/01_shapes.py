@@ -42,8 +42,8 @@ def get_polygon(n):
     # TODO здесь ваш код
 
 
-draw_triangle = get_polygon(n=27)
-draw_triangle(point=sd.get_point(450, 150), angle=13, length=80)
+draw_polygon = get_polygon(n=9)
+draw_polygon(point=sd.get_point(450, 150), angle=13, length=100)
 # figure(point=sd.get_point(200, 200),length=100,angle=13,chislo_storon=6)
 
 sd.pause()
