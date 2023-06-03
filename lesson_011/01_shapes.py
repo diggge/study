@@ -24,7 +24,7 @@ import simple_draw as sd
 #         next_vector.draw(color=sd.random_color())
 #     sd.line(next_vector.end_point, vector1.start_point, width=3)
 
-sd.resolution = (1000, 900)
+sd.resolution = (1000, 700)
 def get_polygon(n):
     def polygon(point,length,angle):
         i, next_angle = 1, angle
