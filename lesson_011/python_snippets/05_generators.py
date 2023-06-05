@@ -80,7 +80,7 @@ for x in list_1:
     # if not can_continue:
     #     break
 
-# В пайтоне нет возможности прерывать вложенные циклы, Пришлось вводить переменную-флаг - некрасиво :(
+# В пайтоне нет возможности прерывать вложенные циклы, пришлось вводить переменную-флаг - некрасиво :(
 # а если бы циклов было 3?
 
 
@@ -90,7 +90,6 @@ def get_next_result(list_1, list_2):
         for y in list_2:
             yield x, y, x * y
 
-
 for x, y, result in get_next_result(list_1, list_2):
     print(x, y, result)
     if result == to_find:
@@ -99,7 +98,6 @@ for x, y, result in get_next_result(list_1, list_2):
 
 
 # Есть еще одна возможность у генераторов - они могут принимать значения
-#
 # Создадим генератор очереди
 def queue(*args):
     data = list(args)
