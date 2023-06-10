@@ -13,13 +13,11 @@ class Family:
         self.mom = 'Татьяна'
         self.son = 'Алексей'
         self.i = 0
-
     def __iter__(self):
         # обнуляем счетчик перед циклом
         self.i = 0
         # возвращаем ссылку на себя - я буду итератором!
         return self
-
     def __next__(self):
         # а этот метод возвращает значения по требованию python
         self.i += 1
@@ -32,8 +30,6 @@ class Family:
         if self.i == 4:
             return f'Счастливая семья :)'
         raise StopIteration()  # признак того, что больше возвращать нечего
-
-
 my_family = Family()
 print(my_family)
 for value in my_family:
