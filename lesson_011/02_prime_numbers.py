@@ -59,7 +59,7 @@ def prime_numbers_generator(n):
         else:
             yield number
 
-for number in prime_numbers_generator(n=100):
+for number in prime_numbers_generator(n=10000):
     print(number)
 #
 #
@@ -78,3 +78,6 @@ for number in prime_numbers_generator(n=100):
 # # простых счастливых палиндромных чисел и так далее. Придумать не менее 2х способов.
 # #
 # # Подсказка: возможно, нужно будет добавить параметр в итератор/генератор.
+class Lucky_numbers:
+    def __init__(self,N):
+        self.N = N
