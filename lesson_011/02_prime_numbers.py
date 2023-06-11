@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-
-
 # Есть функция генерации списка простых чисел
 
-
 def get_prime_numbers(n):
+
     prime_numbers = []
+
     for number in range(2, n+1):
         for prime in prime_numbers:
             if number % prime == 0:
@@ -94,34 +93,92 @@ def get_prime_numbers(n):
 #     print(f'{n}: Счастливое число')
 # else:
 #     print(f'{n}: Несчатсливое число')
+# # Часть 3.1 = Итератор = Решено
+# class Lucky_numbers:
+#     def __init__(self, N):
+#         self.i, self.N = 100, N
+#     def __iter__(self):
+#         return self
+#     def __next__(self):
+#         self.i += 1
+#         y = 1
+#         summa_left = summa_right = 0
+#         if self.i > self.N:
+#             raise StopIteration()
+#         self.k = len(str(self.i))
+#         self.j = self.k // 2
+#         for _ in range(0,self.j):
+#             summa_left += (self.i % 10**self.k) // 10**(self.k-1)
+#             summa_right += (self.i % 10**y) // 10**(y-1)
+#             self.k -= 1
+#             y += 1
+#         if summa_left == summa_right:
+#             return self.i
+# lucky = Lucky_numbers(N=1567867)
+# for number in lucky:
+#     if number is not None:
+#         print(number)
+# # Часть 3.2 = Итератор =Решено
+# class palindromny_number:
+#     def __init__(self, N):
+#         self.i, self.N = 100, N
+#     def __iter__(self):
+#         return self
+#     def __next__(self):
+#         self.i += 1
+#         y = 1
+#         palindrom = 0
+#         if self.i > self.N:
+#             raise StopIteration()
+#         self.k = len(str(self.i))
+#         self.j = self.k // 2
+#         for _ in range(0,self.j):
+#             number_left = (self.i % 10**self.k) // 10**(self.k-1)
+#             number_right = (self.i % 10**y) // 10**(y-1)
+#             self.k -= 1
+#             y += 1
+#             if number_left == number_right:
+#                 palindrom += 1
+#
+#         if palindrom == self.j:
+#             return self.i
+# palindromny = palindromny_number(N=16756)
+# for number in palindromny:
+#     if number is not None:
+#         print(number)
+        # # Часть 3.1 = Генератор = НЕ Решено
+# n = int(input("Введите число:"))
+# i = len(str(n))
+# j = i//2
+# summa_left = 0
+# summa_right = 0
+# y = 1
+# for _ in range(0,j):
+#     summa_left += (n % 10**i) // 10**(i-1)
+#     summa_right += (n % 10**y) // 10**(y-1)
+#     i -= 1
+#     y += 1
+# if summa_left == summa_right:
+#     print(f'{n}: Счастливое число')
+# else:
+#     print(f'{n}: Несчатсливое число')
+list1 =
+def lucky_number(n):
+    i = len(str(n))
+    j = i//2
+    y=1
+    summa_left = 0
+    summa_right = 0
+    for _ in range(0,j):
+        summa_left += (n % 10**i) // 10**(i-1)
+        summa_right += (n % 10**y) // 10**(y-1)
+        i -= 1
+        y += 1
+    yield summa_left,summa_right,n
+for summa_left,summa_right,n in lucky_number(n=1234321):
+    if summa_left == summa_right:
+        print(f'{n} = Счастливое число')
 
-class Lucky_numbers:
-    def __init__(self, N):
-        self.i, self.N = 121, N
-        summa_left = summa_right = 0
-    def __iter__(self):
-        self.i = 121
-        summa_left = summa_right = 0
-        return self
-    def __next__(self):
-        self.i += 1
-        if self.i > self.N:
-            raise StopIteration()
-        self.k = len(str(self.i))
-        self.j = self.k // 2
-        for _ in range(1,self.j+1):
-            summa_left += (self.N % 10**self.k) // 10**(self.k-1)
-            summa_right += (self.N % 10**self.j) // 10**(self.j-1)
-            self.k -= 1
-            self.j -= 1
-
-        if summa_left == summa_left:
-            return self.i
-
-
-test=Lucky_numbers(N=1235)
-for number in test:
-    print(number)
 
 
 

@@ -25,24 +25,29 @@ import simple_draw as sd
 #     sd.line(next_vector.end_point, vector1.start_point, width=3)
 
 sd.resolution = (1000, 700)
+
+
 def get_polygon(n):
-    def polygon(point,length,angle):
+    def polygon(point, length, angle):
         i, next_angle = 1, angle
         vector1 = sd.get_vector(point, angle, length, 3)
         next_vector = vector1
         vector1.draw(color=sd.COLOR_BLACK)
-        while i < n-1:
+        while i < n - 1:
             i += 1
-            next_angle += 360/(n)
+            next_angle += 360 / (n)
             next_vector = sd.get_vector(next_vector.end_point, next_angle, length, 3)
             next_vector.draw(color=sd.random_color())
         sd.line(next_vector.end_point, vector1.start_point, width=3)
+
     return polygon
 
     # TODO здесь ваш код
 
 
-draw_polygon = get_polygon(n=9)
+n = int(input("Введите количество сторон= "))
+
+draw_polygon = get_polygon(n)
 draw_polygon(point=sd.get_point(450, 150), angle=13, length=100)
 # figure(point=sd.get_point(200, 200),length=100,angle=13,chislo_storon=6)
 
