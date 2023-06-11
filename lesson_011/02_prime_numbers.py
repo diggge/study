@@ -97,11 +97,11 @@ def get_prime_numbers(n):
 
 class Lucky_numbers:
     def __init__(self, N):
-        self.i, self.N = 1, N
-        self.summa_left = self.summa_right = 0
+        self.i, self.N = 121, N
+        summa_left = summa_right = 0
     def __iter__(self):
-        self.i = 1
-        self.summa_left = self.summa_right = 0
+        self.i = 121
+        summa_left = summa_right = 0
         return self
     def __next__(self):
         self.i += 1
@@ -110,19 +110,19 @@ class Lucky_numbers:
         self.k = len(str(self.i))
         self.j = self.k // 2
         for _ in range(1,self.j+1):
-            self.summa_left += (self.N % 10**self.k) // 10**(self.k-1)
-            self.summa_right += (self.N % 10**self.j) // 10**(self.j-1)
+            summa_left += (self.N % 10**self.k) // 10**(self.k-1)
+            summa_right += (self.N % 10**self.j) // 10**(self.j-1)
             self.k -= 1
             self.j -= 1
 
-        if self.summa_left == self.summa_left:
+        if summa_left == summa_left:
             return self.i
 
 
 test=Lucky_numbers(N=1235)
 for number in test:
-    if number is not None:
-        print(number, '=счастливое число')
+    print(number)
+
 
 
 
