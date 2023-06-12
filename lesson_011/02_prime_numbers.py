@@ -146,38 +146,49 @@ def get_prime_numbers(n):
 # for number in palindromny:
 #     if number is not None:
 #         print(number)
-        # # Часть 3.1 = Генератор = НЕ Решено
-# n = int(input("Введите число:"))
-# i = len(str(n))
-# j = i//2
-# summa_left = 0
-# summa_right = 0
-# y = 1
-# for _ in range(0,j):
-#     summa_left += (n % 10**i) // 10**(i-1)
-#     summa_right += (n % 10**y) // 10**(y-1)
-#     i -= 1
-#     y += 1
-# if summa_left == summa_right:
-#     print(f'{n}: Счастливое число')
-# else:
-#     print(f'{n}: Несчатсливое число')
-list1 =
-def lucky_number(n):
+# # Часть 3.1 = Генератор = Решено
+# def lucky_number(n):
+#     i = len(str(n))
+#     j = i//2
+#     y = 1
+#     summa_left = 0
+#     summa_right = 0
+#     for _ in range(0,j):
+#         summa_left += (n % 10**i) // 10**(i-1)
+#         summa_right += (n % 10**y) // 10**(y-1)
+#         i -= 1
+#         y += 1
+#     yield summa_left,summa_right
+# for n in range (1,15987):
+#     for summa_left,summa_right in lucky_number(n):
+#         if summa_left == summa_right:
+#             print(f'{n} = Счастливое число')
+# # Часть 3.2 = Генератор = Решено
+def palindromnoe_number(n):
     i = len(str(n))
     j = i//2
-    y=1
+    y = 1
     summa_left = 0
     summa_right = 0
+    ravno = 0
     for _ in range(0,j):
-        summa_left += (n % 10**i) // 10**(i-1)
-        summa_right += (n % 10**y) // 10**(y-1)
+        summa_left = (n % 10**i) // 10**(i-1)
+        summa_right = (n % 10**y) // 10**(y-1)
         i -= 1
         y += 1
-    yield summa_left,summa_right,n
-for summa_left,summa_right,n in lucky_number(n=1234321):
-    if summa_left == summa_right:
-        print(f'{n} = Счастливое число')
+        if summa_left == summa_right:
+            ravno += 1
+    if ravno == j:
+        yield True
+for n in range (1,15987):
+    for X in palindromnoe_number(n):
+        if X:
+            print(f'{n} = Палиндромное число')
+
+
+
+
+
 
 
 
