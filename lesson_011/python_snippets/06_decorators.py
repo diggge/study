@@ -28,9 +28,7 @@ print(f'Функция работала {elapsed} секунд(ы)')
 # Напишем функцию высшего порядка, на вход которой передается другая функция и параметры с которыми надо её вызвать
 def time_track(func, *args, **kwargs):
     started_at = time.time()
-
     result = func(*args, **kwargs)
-
     ended_at = time.time()
     elapsed = round(ended_at - started_at, 4)
     print(f'Функция работала {elapsed} секунд(ы)')
