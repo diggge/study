@@ -1,15 +1,31 @@
-n = int(input("Введите число:"))
-i = len(str(n))
-j = i//2
-summa_left = 0
-summa_right = 0
-y = 1
-for _ in range(0,j):
-    summa_left += (n % 10**i) // 10**(i-1)
-    summa_right += (n % 10**y) // 10**(y-1)
-    i -= 1
-    y += 1
-if summa_left == summa_right:
-    print(f'{n}: Счастливое число')
-else:
-    print(f'{n}: Несчатсливое число')
+# Проверить работу на следующих функциях
+# @log_errors
+def perky(param):
+    return param / 0
+
+
+# @log_errors
+def check_line(line):
+    name, email, age = line.split(' ')
+    if not name.isalpha():
+        raise ValueError("it's not a name")
+    if '@' not in email or '.' not in email:
+        raise ValueError("it's not a email")
+    if not 10 <= int(age) <= 99:
+        raise ValueError('Age not in 10..99 range')
+
+
+lines = [
+    'Ярослав bxh@ya.ru 600',
+    'Земфира tslzp@mail.ru 52',
+    'Тролль nsocnzas.mail.ru 82',
+    'Джигурда wqxq@gmail.com 29',
+    'Земфира 86',
+    'Равшан wmsuuzsxi@mail.ru 35',
+]
+for line in lines:
+    try:
+        check_line(line)
+    except Exception as exc:
+        print(f'Invalid format: {exc}')
+perky(param=42)

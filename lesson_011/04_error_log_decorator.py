@@ -9,7 +9,8 @@
 
 
 def log_errors(func):
-    pass
+    with open('function_errors.log','a',encoding='utf8') as log_file:
+
     # TODO здесь ваш код
 
 
