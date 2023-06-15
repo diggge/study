@@ -34,39 +34,22 @@ def sorting(line,good_rs,bad_rs):
         name, mail, age = line.split(' ')
         if (len(name)<2 or len(mail)<=5 or len(age)<2):
             raise ValueError('Корректно не прописаны все три поля')
-        # else:
-        #     check += 1
+
         print(f'Имя = {name}, mail = {mail} , age = {age}')
         if name.isalpha() is False:
             raise NotNameError('поле имени содержит НЕ только буквы')
-        # else:
-        #     check += 1
+
         if mail.count('@') != 1 or mail[0] =='@' or mail.count('.') < 1 or mail.rfind('.')<mail.rfind('@'):
             raise NotEmailError('поле Емейл прописана некорректно')
-        # else:
-        #     check += 1
 
-        # k1=0
-        # k2=0
-        # for symbol in mail:
-        #     if ord(symbol) == 64:
-        #         k1 += 1
-        #     if ord(symbol) == 46:
-        #         k2 += 1
-        # if (k1 !=1 or k2 != 1):
-        #     raise NotEmailError('поле Емейл прописана некорректно')
-        # else:
-        #         check += 1
         if ((age.isdigit() is False) or int(age) < 9 or int(age) > 99):
             raise ValueError('поле Возраст прописан некорректно')
         else:
             check += 1
     except ValueError as exc1:
-        # print(exc1.args[0])
         if 'unpack' in exc1.args[0]:
             print(f'Не прописаны все три значения в строке {line}')
             bad_rs.write(line + '  Не прописаны все три значения в строке  \n')
-        # print(f'Ошибка {exc1} и параметры {exc1.args} в строке {line}')
         if 'Корректно не прописаны все три поля' in exc1.args[0]:
             print(f'Корректно не прописаны все три поля {line}')
             bad_rs.write(line + '  :Корректно не прописаны все три поля  \n')
@@ -89,7 +72,4 @@ with open('registrations.txt', 'r', encoding='utf8') as rs:
                     good_rs.write(line)
                     print(f'{line[:-1]} = Хорошая строка, записываю в registrations_good.log')
 
-                # else:
-                #     bad_rs.write(line)
-                #     print(f'{line[:-1]} = Плохая строка , записываю в registrations_bad.log ')
 
