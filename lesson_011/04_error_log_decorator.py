@@ -12,15 +12,15 @@ def log_errors(func):
     def surrogate(*args, **kwargs):
         with open('function_errors.log','a',encoding='utf8') as log_file:
             try:
-                result = func(*args, **kwargs)
+                func(*args, **kwargs)
             except ZeroDivisionError as err:
-                log_file.write('\n'+str(func)+':'+str(err))
+                log_file.write('\n'+str(func.__name__)+':'+str(err))
             except ValueError as err1:
-                log_file.write('\n' + str(func) + ':' + str(err1))
+                log_file.write('\n' + str(func.__name__) + ':' + str(err1.__str__()))
             except ValueError as err2:
-                log_file.write('\n' + str(func) + ':' + str(err2))
+                log_file.write('\n' + str(func.__name__) + ':' + str(err2))
             except ValueError as err3:
-                log_file.write('\n' + str(func) + ':' + str(err3))
+                log_file.write('\n' + str(func.__name__) + ':' + str(err3))
 
 
 

@@ -1,7 +1,5 @@
-<function perky at 0x000001E464C3A320>:division by zero
-<function perky at 0x0000023D55E4A320>:division by zero
-<function perky at 0x0000026BF11AA5F0>:division by zero
-<function perky at 0x000001993309A5F0>:division by zero
-<function check_line at 0x000001993309A710>:Age not in 10..99 range
-<function check_line at 0x000001993309A710>:it's not a email
-<function check_line at 0x000001993309A710>:not enough values to unpack (expected 3, got 2)
+
+perky:division by zero
+check_line:Age not in 10..99 range
+check_line:it's not a email
+check_line:not enough values to unpack (expected 3, got 2)
