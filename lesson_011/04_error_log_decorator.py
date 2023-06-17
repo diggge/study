@@ -7,23 +7,19 @@
 # Формат лога: <имя функции> <параметры вызова> <тип ошибки> <текст ошибки>
 # Лог файл открывать каждый раз при ошибке в режиме 'a'
 
-
 def log_errors(func):
     def surrogate(*args, **kwargs):
         with open('function_errors.log','a',encoding='utf8') as log_file:
             try:
-                func(*args, **kwargs)
+                return func(*args, **kwargs)
             except ZeroDivisionError as err:
-                log_file.write('\n'+str(func.__name__)+':'+str(err))
+                err_review1 = ('<{}>  <{}>  <{}>  <{}>\n'.format(func.__name__, kwargs, Exception, err))
+                log_file.write(err_review1)
+                raise ZeroDivisionError
             except ValueError as err1:
-                log_file.write('\n' + str(func.__name__) + ':' + str(err1.__str__()))
-            except ValueError as err2:
-                log_file.write('\n' + str(func.__name__) + ':' + str(err2))
-            except ValueError as err3:
-                log_file.write('\n' + str(func.__name__) + ':' + str(err3))
-
-
-
+                err_review2 = ('<{}>  <{}>  <{}>  <{}>\n'.format(func.__name__, args, Exception, err1))
+                log_file.write(err_review2)
+                raise ValueError
     return surrogate
 
     # TODO здесь ваш код
@@ -35,8 +31,8 @@ def perky(param):
     return param / 0
 # perky(param=42)
 # perky = log_errors(perky)
-result = perky(42)
-print(result)
+
+
 @log_errors
 def check_line(line):
     name, email, age = line.split(' ')
@@ -59,7 +55,7 @@ for line in lines:
         check_line(line)
     except Exception as exc:
         print(f'Invalid format: {exc}')
-
+result = perky(param=42)
 
 
 # Усложненное задание (делать по желанию).
