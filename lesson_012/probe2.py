@@ -13,16 +13,20 @@ sites = [
     # 'https://soccer.ru',
     # 'https://sports.ru'
 ]
-class Link_extractor(HTMLParser):
+class LinkExtractor(HTMLParser):
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.links = []
-    def handle_starttag(self, tag,attrs):
-        if tag != 'link':
+    def handle_starttag(self, tag, attrs):
+        if tag not in ('link','script',):   
             return
         attrs = dict(attrs)
-        if 'rel' in attrs and attrs['rel'] == 'stylesheet':
-            self.links.append('href')
+        if tag == 'link':
+            if 'rel' in attrs and attrs['rel'] == 'stylesheet':
+                self.links.append(attrs['href'])
+            elif tag == 'script':
+                if 'src' in attrs:
+                    self.links.append(attrs['src'])
 
 
 for url in sites:
@@ -32,6 +36,6 @@ for url in sites:
     html_data = urlopen(res).read()
     html_data = html_data.decode('utf8')
     total_bytes = len(html_data)
-    extractor = Link_extractor()
+    extractor = LinkExtractor()
     extractor.feed(html_data)
     print(extractor.links)
