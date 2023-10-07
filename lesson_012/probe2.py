@@ -5,10 +5,10 @@ from html.entities import name2codepoint
 import requests
 
 sites = [
-    'https://www.fl.ru',
+    # 'https://www.fl.ru',
     # 'https://www.weblancer.net/',
     # 'https://www.freelancejob.ru/',
-    # 'https://kwork.ru',
+    'https://kwork.ru',
     # 'https://work-zilla.com/',
     # 'https://soccer.ru',
     # 'https://sports.ru'
@@ -18,15 +18,21 @@ class LinkExtractor(HTMLParser):
         super().__init__(*args,**kwargs)
         self.links = []
     def handle_starttag(self, tag, attrs):
-        if tag not in ('link','script',):   
+        if tag not in ('link','script',):
             return
-        attrs = dict(attrs)
-        if tag == 'link':
-            if 'rel' in attrs and attrs['rel'] == 'stylesheet':
-                self.links.append(attrs['href'])
-            elif tag == 'script':
-                if 'src' in attrs:
-                    self.links.append(attrs['src'])
+        print("Start tag:   ", tag)
+
+        for attr in attrs:
+            print("     attr:", attr)
+        # if tag not in ('link','script',):
+        #     return
+        # attrs = dict(attrs)
+        # if tag == 'link':
+        #     if 'rel' in attrs and attrs['rel'] == 'stylesheet':
+        #         self.links.append(attrs['href'])
+        #     elif tag == 'script':
+        #         if 'src' in attrs:
+        #             self.links.append(attrs['src'])
 
 
 for url in sites:
@@ -38,4 +44,4 @@ for url in sites:
     total_bytes = len(html_data)
     extractor = LinkExtractor()
     extractor.feed(html_data)
-    print(extractor.links)
+    # print(extractor.links)

@@ -18,17 +18,18 @@ class LinkExtractor(HTMLParser):
         super().__init__(*args,**kwargs)
         self.links = []
     def handle_starttag(self, tag, attrs):
-
-        if tag not in ('link'):
+        if tag not in ('link','script',):
             return
         attrs = dict(attrs)
         # print("Start tag", tag)
-        if 'rel' in attrs and attrs['rel'] == 'stylesheet':
-            self.links.append(attrs['href'])
+        if tag == 'link':
+            if 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'href' in attrs:
+                self.links.append(attrs['href'])
+            elif 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'data-href' in attrs:
+                self.links.append(attrs['data-href'])
         elif tag == 'script':
             if 'src' in attrs:
                 self.links.append(attrs['src'])
-
 
 for url in sites:
     print(f'Go {url} ...')
@@ -39,7 +40,8 @@ for url in sites:
     total_bytes = len(html_data)
     extractor = LinkExtractor()
     extractor.feed(html_data)
-    print(extractor.links)
+    # print(html_data)
+    # print(extractor.links)
     for link in extractor.links:
         print(f'\t Go {link} ...')
         try:
