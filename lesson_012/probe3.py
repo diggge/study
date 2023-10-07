@@ -31,25 +31,52 @@ class LinkExtractor(HTMLParser):
             if 'src' in attrs:
                 self.links.append(attrs['src'])
 
+class PagerSizer:
+    def __init__(self,url):
+        self.url = url
+        self.total_bytes = 0
+    def run(self):
+        self.total_bytes = 0
+        html_data = self.get_html(url=self.url)
+        if html_data is None:
+            return
+        self.total_bytes += len(html_data)
+        extractor = LinkExtractor()
+        extractor.feed(html_data)
+        for link in extractor.links:
+            exctra_data = self.get_html(url=link)
+            if exctra_data is None:
+                return
+            self.total_bytes = + len(exctra_data)
+    def get_html(self,url):
+        try:
+            res = requests.get(url)
+        except Exception as exc:
+            print(exc)
+        else:
+            return res.text
+
 for url in sites:
     print(f'Go {url} ...')
     # res = Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'})
-    res = requests.get(url)
-    html_data = res.text
+    sizer = PagerSizer(url=url)
+    # res = requests.get(url)
+    # html_data = res.text
     # html_data = html_data.decode('utf8')
-    total_bytes = len(html_data)
-    extractor = LinkExtractor()
-    extractor.feed(html_data)
+    # total_bytes = len(html_data)
+    # extractor = LinkExtractor()
+    # extractor.feed(html_data)
     # print(html_data)
     # print(extractor.links)
-    for link in extractor.links:
-        print(f'\t Go {link} ...')
-        try:
-            res = requests.get(link)
-            # res = Request(link, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'})
-
-        except Exception as exc:
-            print(exc)
-        exctra_data = res.text
-        total_bytes =+ len(exctra_data)
-    print(f'For url {url} need download {total_bytes} bytes')
+    # for link in extractor.links:
+    #     print(f'\t Go {link} ...')
+    #     try:
+    #         res = requests.get(link)
+    #         # res = Request(link, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'})
+    #
+    #     except Exception as exc:
+    #         print(exc)
+    #     exctra_data = res.text
+    #     total_bytes =+ len(exctra_data)
+    sizer.run()
+    print(f'For url {url} need download {sizer.total_bytes/1024} Kbytes')
