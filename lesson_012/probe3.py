@@ -1,3 +1,5 @@
+import time
+from urllib.parse import urlsplit, urljoin
 from urllib.request import Request,urlopen
 from html.parser import HTMLParser
 from html.entities import name2codepoint
@@ -13,9 +15,21 @@ sites = [
     'https://soccer.ru',
     'https://sports.ru'
 ]
+
+def time_track(func):
+    def surrogate(*args, **kwargs):
+        started_at = time.time()
+        result = func(*args, **kwargs)
+        ended_at = time.time()
+        elapsed = round(ended_at - started_at, 4)
+        print(f'Функция работала {elapsed} секунд(ы)')
+        return result
+    return surrogate
+
 class LinkExtractor(HTMLParser):
-    def __init__(self,*args,**kwargs):
+    def __init__(self, base_url,*args,**kwargs):
         super().__init__(*args,**kwargs)
+        self.base_url = base_url
         self.links = []
     def handle_starttag(self, tag, attrs):
         if tag not in ('link','script',):
@@ -24,12 +38,19 @@ class LinkExtractor(HTMLParser):
         # print("Start tag", tag)
         if tag == 'link':
             if 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'href' in attrs:
-                self.links.append(attrs['href'])
+                link = self._refine(attrs['href'])
+                self.links.append(link)
             elif 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'data-href' in attrs:
-                self.links.append(attrs['data-href'])
+                link = self._refine(attrs['data-href'])
+                self.links.append(link)
         elif tag == 'script':
             if 'src' in attrs:
-                self.links.append(attrs['src'])
+                link = self._refine(attrs['src'])
+                self.links.append(link)
+
+    def _refine(self,link):
+        # scheme, netloc, path, query, fragment = urlsplit(link)
+        return urljoin(self.base_url, link)
 
 class PagerSizer:
     def __init__(self,url):
@@ -41,7 +62,7 @@ class PagerSizer:
         if html_data is None:
             return
         self.total_bytes += len(html_data)
-        extractor = LinkExtractor()
+        extractor = LinkExtractor(base_url=self.url)
         extractor.feed(html_data)
         for link in extractor.links:
             exctra_data = self.get_html(url=link)
@@ -50,33 +71,19 @@ class PagerSizer:
             self.total_bytes = + len(exctra_data)
     def get_html(self,url):
         try:
+            print(f'Go {url} ...')
             res = requests.get(url)
         except Exception as exc:
             print(exc)
         else:
             return res.text
+@time_track
+def main():
+    sizers = [PagerSizer(url=url) for url in sites]
+    for sizer in sizers:
+        sizer.run()
+    for sizer in sizers:
+        print(f'For url {sizer.url} need download {round(sizer.total_bytes/1024,2)} Kbytes')
 
-for url in sites:
-    print(f'Go {url} ...')
-    # res = Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'})
-    sizer = PagerSizer(url=url)
-    # res = requests.get(url)
-    # html_data = res.text
-    # html_data = html_data.decode('utf8')
-    # total_bytes = len(html_data)
-    # extractor = LinkExtractor()
-    # extractor.feed(html_data)
-    # print(html_data)
-    # print(extractor.links)
-    # for link in extractor.links:
-    #     print(f'\t Go {link} ...')
-    #     try:
-    #         res = requests.get(link)
-    #         # res = Request(link, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'})
-    #
-    #     except Exception as exc:
-    #         print(exc)
-    #     exctra_data = res.text
-    #     total_bytes =+ len(exctra_data)
-    sizer.run()
-    print(f'For url {url} need download {sizer.total_bytes/1024} Kbytes')
+if __name__ == '__main__':
+    main()
