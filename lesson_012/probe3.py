@@ -1,10 +1,7 @@
-import time
-from urllib.parse import urlsplit, urljoin
-from urllib.request import Request,urlopen
-from html.parser import HTMLParser
-from html.entities import name2codepoint
-
 import requests
+
+from extractor import LinkExtractor
+from utils import time_track
 
 sites = [
     'https://www.fl.ru',
@@ -16,41 +13,6 @@ sites = [
     'https://sports.ru'
 ]
 
-def time_track(func):
-    def surrogate(*args, **kwargs):
-        started_at = time.time()
-        result = func(*args, **kwargs)
-        ended_at = time.time()
-        elapsed = round(ended_at - started_at, 4)
-        print(f'Функция работала {elapsed} секунд(ы)')
-        return result
-    return surrogate
-
-class LinkExtractor(HTMLParser):
-    def __init__(self, base_url,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.base_url = base_url
-        self.links = []
-    def handle_starttag(self, tag, attrs):
-        if tag not in ('link','script',):
-            return
-        attrs = dict(attrs)
-        # print("Start tag", tag)
-        if tag == 'link':
-            if 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'href' in attrs:
-                link = self._refine(attrs['href'])
-                self.links.append(link)
-            elif 'rel' in attrs and attrs['rel'] == 'stylesheet' and 'data-href' in attrs:
-                link = self._refine(attrs['data-href'])
-                self.links.append(link)
-        elif tag == 'script':
-            if 'src' in attrs:
-                link = self._refine(attrs['src'])
-                self.links.append(link)
-
-    def _refine(self,link):
-        # scheme, netloc, path, query, fragment = urlsplit(link)
-        return urljoin(self.base_url, link)
 
 class PagerSizer:
     def __init__(self,url):
