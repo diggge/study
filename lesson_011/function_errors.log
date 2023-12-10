@@ -2,3 +2,10 @@
 <check_line>  <('Тролль nsocnzas.mail.ru 82',)>  <<class 'Exception'>>  <it's not a email>
 <check_line>  <('Земфира 86',)>  <<class 'Exception'>>  <not enough values to unpack (expected 3, got 2)>
 <perky>  <{'param': 42}>  <<class 'Exception'>>  <division by zero>
+<check_line>  <('Ярослав bxh@ya.ru 600',)>  <<class 'Exception'>>  <Age not in 10..99 range>
+<check_line>  <('Тролль nsocnzas.mail.ru 82',)>  <<class 'Exception'>>  <it's not a email>
+<check_line>  <('Земфира 86',)>  <<class 'Exception'>>  <not enough values to unpack (expected 3, got 2)>
+<perky>  <{'param': 42}>  <<class 'Exception'>>  <division by zero>
+<check_line>  <('Ярослав bxh@ya.ru 600',)>  <<class 'Exception'>>  <Age not in 10..99 range>
+<check_line>  <('Тролль nsocnzas.mail.ru 82',)>  <<class 'Exception'>>  <it's not a email>
+<check_line>  <('Земфира 86',)>  <<class 'Exception'>>  <not enough values to unpack (expected 3, got 2)>

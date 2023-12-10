@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-
 # Описание предметной области:
-#
+
 # При торгах на бирже совершаются сделки - один купил, второй продал.
 # Покупают и продают ценные бумаги (акции, облигации, фьючерсы, етс). Ценные бумаги - это по сути долговые расписки.
 # Ценные бумаги выпускаются партиями, от десятка до несколько миллионов штук.
@@ -74,3 +73,38 @@
 #         <обработка данных>
 
 # TODO написать код в однопоточном/однопроцессорном стиле
+import os
+
+path = 'C:/Users/user/study/lesson_012/trades'
+path_normalized = os.path.normpath(path)
+print(path_normalized)
+for dirpath, dirnames, filenames in os.walk(path_normalized):
+    new_dict = {}
+    new_list = []
+    min_volatility = []
+    max_volatility = []
+    null_volatity = []
+    for file in filenames:
+        with open(dirpath + "/" + file, 'r', encoding='utf8') as f:
+            my_list = []
+            my_dict = {}
+            for line in f:
+                key, value1, value2, value3 = line.split(',')
+                if key != 'SECID':
+                    value2 = float(value2)
+                    value3 = int(value3[:-1])
+                    my_list.append([value2,value3])
+            min_list = min(my_list, key = lambda x:x[0])
+            max_list = max(my_list, key = lambda x:x[0])
+            average_price = round(((min_list[0] + max_list[0])/2),2)
+            volatility = round(((max_list[0]-min_list[0])/average_price)*100,2)
+            new_list.append([key,average_price,volatility])
+    new_list=sorted(new_list, key=lambda x:x[2])
+    min_volatility = new_list[:3]
+    max_volatility = new_list[-3:]
+    print(min_volatility,max_volatility)
+    for i in new_list:
+        if i[2] == 0:
+            null_volatity.append(i)
+    print(null_volatity)
+
