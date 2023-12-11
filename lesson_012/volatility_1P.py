@@ -74,8 +74,13 @@
 
 # TODO написать код в однопоточном/однопроцессорном стиле
 import os
-
 path = 'C:/Users/user/study/lesson_012/trades'
+
+class VolatilitySixxer:
+    def __init__(self,path):
+        self.path = path
+    def run(self):
+
 path_normalized = os.path.normpath(path)
 print(path_normalized)
 for dirpath, dirnames, filenames in os.walk(path_normalized):
