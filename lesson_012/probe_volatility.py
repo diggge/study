@@ -1,22 +1,21 @@
 import os
 import time
-import threading
 
-def time_track(func):
-    def surrogate(*args, **kwargs):
-        started_at = time.time()
-        result = func(*args, **kwargs)
-        ended_at = time.time()
-        elapsed = round(ended_at - started_at, 4)
-        print(f'Функция работала {elapsed} секунд(ы)')
-        return result
-    return surrogate
+
+def time_track(func, *args, **kwargs):
+    started_at = time.time()
+    result = func(*args, **kwargs)
+    ended_at = time.time()
+    elapsed = round(ended_at - started_at, 4)
+    print(f'Функция работала {elapsed} секунд(ы)')
+    return result
+
 
 path = 'C:/Users/user/study/lesson_012/trades'
 
-class VolatilitySixxer(threading.Thread):
-    def __init__(self, path, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+
+class VolatilitySixxer:
+    def __init__(self,path):
         self.path = path
         self.new_list, self.null_volatity = [], []
 
@@ -51,7 +50,7 @@ class VolatilitySixxer(threading.Thread):
         print('Нулевая волатильность  в бумагах:', self.null_volatity)
 
 
-@time_track
+# @time_track
 def main():
     readers = [VolatilitySixxer(path=path)]
     for reader in readers:

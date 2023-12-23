@@ -25,11 +25,10 @@ def fishing(name, worms):
     for fish, count in catch.items():
         print(f'    {fish} - {count}')
 
-
 fishing(name='Вася', worms=10)
 
-
 # А теперь создадим второго рыбака, пошедшего на рыбалку ОДНОВРЕМЕННО с первым
+
 thread = Thread(target=fishing, kwargs=dict(name='Вася', worms=10))
 thread.start()
 
@@ -37,9 +36,9 @@ fishing(name='Коля', worms=10)
 
 thread.join()
 
-
 # При простой передаче функции в поток результат выполнения функции
 # можно получить только через изменяемый обьект в параметрах:
+
 def fishing(name, worms, catch):
     for worm in range(worms):
         print(f'{name}: Червяк № {worm} - Забросил, ждем...', flush=True)
@@ -50,7 +49,6 @@ def fishing(name, worms, catch):
         else:
             print(f'{name}: Ага, у меня {fish}', flush=True)
             catch[fish] += 1
-
 
 vasya_catch = defaultdict(int)
 thread = Thread(target=fishing, kwargs=dict(name='Вася', worms=10, catch=vasya_catch))

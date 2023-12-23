@@ -10,7 +10,7 @@ import multiprocessing
 import requests
 
 from extractor import LinkExtractor
-from utils import time_track
+from lesson_012.utils import time_track
 
 sites = [
     'https://www.fl.ru',
