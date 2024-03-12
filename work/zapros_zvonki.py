@@ -11,10 +11,10 @@ con = pymysql.connect(host='10.77.3.24',
 with con:
     cur = con.cursor()
     cur.execute(
-        "SELECT callingstationid,calledstationid,acctstarttime,acctsessiontime,nasipaddress FROM `history_phone` WHERE (acctstarttime>'2023-01-01 00:00:00' AND acctstoptime<'2023-12-31 23:00:00') ORDER BY acctstarttime")
+        "SELECT callingstationid,calledstationid,acctstarttime,acctsessiontime,nasipaddress FROM `history_phone` WHERE (acctstarttime>'2023-10-25 16:00:00' AND acctstoptime<'2023-12-31 23:00:00') ORDER BY acctstarttime")
     rows = cur.fetchall()
     for row in rows:
-        if (row["callingstationid"]=='0901611' or row["calledstationid"] == '0901611'):
+        if (row["callingstationid"]=='1001' or row["calledstationid"] == '1001'):
         # if row["nasipaddress"] == '10.200.0.16' or row["nasipaddress"] == '10.100.0.16':
             print('Кто звонил: ', row["callingstationid"], 'Кому звонил:', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:', row["acctsessiontime"])
         #     print('Указанный номер звонил на номера: ', row["calledstationid"], 'Время и Дата звонка:', row["acctstarttime"], 'Длительность звонка:' ,row["acctsessiontime"])
