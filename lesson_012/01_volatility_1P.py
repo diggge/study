@@ -1,18 +1,15 @@
 import os
-import threading
-from collections import defaultdict
+
+
 from utils import time_track
 
 
-class VolatilityCalc(threading.Thread):
+class VolatilityCalc:
 
-    def __init__(self, filename, source,lock,results,*args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, filename, source):
         self.source = source
         self.filename = filename
         self.volatility, self.max_price, self.min_price = 0, 0, 0
-        self.lock = lock
-        self.results = results
 
     def _calculation_of_volatility(self, full_file_path):
         with open(full_file_path, 'r', encoding='utf8') as data:
@@ -38,24 +35,18 @@ class VolatilityCalc(threading.Thread):
         self._calculation_of_volatility(full_file_path=full_file_path)
         half_sum = (self.max_price + self.min_price) / 2
         self.volatility = round((self.max_price - self.min_price) * 100 / half_sum, 2)
-        with self.lock:
-            self.results[self.filename] = self.volatility
 
 
 @time_track
 def main():
-    result_vol = defaultdict(int)
     # source = r'..\..\..\trades'
     source = r'trades'
     list_filenames = os.listdir(source)
-    lock = threading.Lock()
-    volatility_of_securities = [VolatilityCalc(filename=filename, source=source, lock=lock, results=result_vol) for filename in list_filenames]
-
+    volatility_of_securities = [VolatilityCalc(filename=filename, source=source) for filename in list_filenames]
+    result_vol = {}
     for security in volatility_of_securities:
-        security.start()
-    for security in volatility_of_securities:
-        security.join()
-
+        security.run()
+        result_vol[security.filename] = security.volatility
     print('Максимальная волатильность:')
     first_free_max = {}
     counter = 0

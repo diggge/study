@@ -1,44 +1,39 @@
-from collections import defaultdict
-import time
-import random
-from threading import Thread
-FISH = (None, 'плотва', 'окунь', 'лещ')
+from html.parser import HTMLParser
+from urllib.request import urlopen, Request
 
-class Fisher(Thread):
+import requests
 
-    def __init__(self, name, worms, *args, **kwargs):
+# from extractor import LinkExtractor
+# from utils import time_track
+
+sites = [
+    'https://www.fl.ru',
+    'https://www.weblancer.net/',
+    'https://www.freelancejob.ru/',
+    'https://kwork.ru',
+    'https://work-zilla.com/',
+    # 'https://iklife.ru/udalennaya-rabota-i-frilans/poisk-raboty/vse-samye-luchshie-sajty-i-birzhi-v-internete.html',
+]
+class LinkExtractor(HTMLParser):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.name = name
-        self.worms = worms
-        self.catch = defaultdict(int)
-        # будем проверять в цикле - а не пора ли нам заканчивать?
-        self.need_stop = False
-
-    def run(self):
-        self.catch = defaultdict(int)
-        for worm in range(self.worms):
-            print(f'{self.name}: Червяк № {worm} - Забросил, ждем...', flush=True)
-            _ = 3 ** (random.randint(50, 70) * 10000)
-            fish = random.choice(FISH)
-            if fish is None:
-                print(f'{self.name}: Тьфу, сожрали червяка...', flush=True)
-            else:
-                print(f'{self.name}: Ага, у меня {fish}', flush=True)
-                self.catch[fish] += 1
-            if self.need_stop:
-                print(f'{self.name}: Ой, жена ужинать зовет! Сматываем удочки...', flush=True)
-                break
+        self.links = []
+    def handle_starttag(self,tag,attrs):
+        if tag != 'link':
+            return
+        print("Start tag:",tag)
+        if 'rel' in attrs and attrs['rel'] == 'stylesheet':
+            self.links.append(attrs['href'])
+        for attr in attrs:
+            print("    attr:", attr)
+for url in sites:
+    req = Request(url=url, headers={'User-Agent': 'Mozilla/5.0'})
+    html_data = urlopen(req).read()
+    html_data = html_data.decode('utf8', errors='ignore')
+    total_bytes = len(html_data)
+    extractor = LinkExtractor()
+    extractor.feed(html_data)
+    print(extractor.links)
 
 
-vasya = Fisher(name='Вася', worms=100)
-vasya.start()
-time.sleep(1)
-if vasya.is_alive():  # кстати с помощью этого метода можно проверить выполняется ли еще поток?
-    vasya.need_stop = True
-vasya.join()  # ожидание завершения обязательно - поток может некоторое время финализировать работу
 
-# Подводя итог, нужно сказать, что в мультипоточном программированиии наши линейный код
-# перестают быть линейным (СИНХРОННЫМ). Если ранее мы были уверены в последовательности выполнения кода,
-# то при использовании потоков (процессов) код может выполняться АСИНХРОННО: нельзя гарантировать
-# что за этим блоком кода будет выполняться вот этот.
-# Представьте себе спагетти, которые мешают вилкой: где и когда соприкоснуться макаронины никто не знает...
